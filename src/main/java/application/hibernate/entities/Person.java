@@ -1,10 +1,13 @@
-package application.hibernate.entity;
+package application.hibernate.entities;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -21,6 +24,9 @@ public class Person {
 
 	@Column(name = "address")
 	private String address;
+
+	@OneToMany(mappedBy = "person")
+	private List<Account> accounts;
 
 	public Person() {
 	}
@@ -54,6 +60,14 @@ public class Person {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
 	}
 
 	@Override

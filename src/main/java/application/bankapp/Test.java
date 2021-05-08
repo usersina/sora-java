@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import application.hibernate.entity.Person;
+import application.hibernate.entities.Person;
 import application.hibernate.util.HibernateUtil;
 
 public class Test {
