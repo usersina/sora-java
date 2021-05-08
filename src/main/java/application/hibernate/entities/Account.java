@@ -40,11 +40,16 @@ public class Account {
 		this.maxWithdrawal = maxWithdrawal;
 	}
 
+	public Account(Long id) {
+		this.id = id;
+	}
+
 	public double getBalance() {
 		return balance;
 	}
 
 	public void setBalance(double balance) {
+		// TODO: Update overdraft here maybe
 		this.balance = balance;
 	}
 
