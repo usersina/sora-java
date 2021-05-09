@@ -28,8 +28,8 @@ public class FXApp extends Application {
 
 			// Set window style & title
 			primaryStage.initStyle(StageStyle.UNDECORATED);
-			primaryStage.setTitle("Bank Management");
 			primaryStage.setResizable(false);
+			primaryStage.setTitle("Bank Management");
 
 			// Create & show the scene
 			Scene scene = new Scene(root);
@@ -50,6 +50,11 @@ public class FXApp extends Application {
 			});
 		});
 		currentStage.getScene().setRoot(root);
+	}
+
+	public static void resizeWindow(int width, int height) {
+		currentStage.setWidth(width);
+		currentStage.setHeight(height);
 	}
 
 	public static void main(String[] args) {

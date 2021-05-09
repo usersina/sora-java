@@ -3,8 +3,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="740.0" styleClass="container" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.bankapp.controllers.IndexController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="container" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.bankapp.controllers.IndexController">
    <children>
-      <Label layoutX="319.0" layoutY="193.0" text="Just a random view" textFill="WHITE" />
+      <Label layoutX="471.0" layoutY="292.0" text="Index page" textFill="WHITE" />
    </children>
 </AnchorPane>
