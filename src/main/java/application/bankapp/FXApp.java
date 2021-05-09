@@ -1,5 +1,7 @@
 package application.bankapp;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +11,13 @@ import javafx.stage.StageStyle;
 
 // Do not start app with this, start App.java instead
 public class FXApp extends Application {
+	private static Stage currentStage;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		currentStage = primaryStage;
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/views/Index.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
 			// Move window on drag & drop
 			root.setOnMousePressed(pressEvent -> {
 				root.setOnMouseDragged(dragEvent -> {
@@ -23,7 +28,7 @@ public class FXApp extends Application {
 
 			// Set window style & title
 			primaryStage.initStyle(StageStyle.UNDECORATED);
-			primaryStage.setTitle("My demo app");
+			primaryStage.setTitle("Bank Management");
 			primaryStage.setResizable(false);
 
 			// Create & show the scene
@@ -33,6 +38,18 @@ public class FXApp extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void changeScene(String fxml) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource(fxml));
+		// Move window on drag & drop
+		root.setOnMousePressed(pressEvent -> {
+			root.setOnMouseDragged(dragEvent -> {
+				currentStage.setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+				currentStage.setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+			});
+		});
+		currentStage.getScene().setRoot(root);
 	}
 
 	public static void main(String[] args) {

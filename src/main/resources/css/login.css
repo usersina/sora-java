@@ -1,0 +1,11 @@
+.container {
+	-fx-background-color: "#20120F";
+}
+
+.sub-container {
+	-fx-background-color: "#9c2b27";
+}
+
+#btn {
+	-fx-background-color: "#ff0000";
+}
