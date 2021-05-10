@@ -1,3 +1,15 @@
 .container {
 	-fx-background-color: "#20120F";
 }
+
+.tab *.tab-label {
+	-fx-rotate: 90;
+}
+
+.tab {
+	-fx-padding: 3em 0.2em 3em 0.2em;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+	-fx-focus-color: none;
+}
