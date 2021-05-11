@@ -1,5 +1,5 @@
 .container {
-	-fx-background-color: "#20120F";
+	-fx-background-color: #20120F;
 }
 
 .tab *.tab-label {
@@ -11,5 +11,10 @@
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected {
-	-fx-focus-color: none;
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+}
+
+#btnDelete {
+	-fx-color: red;
 }

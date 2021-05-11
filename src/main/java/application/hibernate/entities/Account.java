@@ -32,12 +32,16 @@ public class Account {
 	public Account() {
 	}
 
-	public Account(double balance, double overdraft, double maxOverdraft, double maxWithdrawal) {
+	public Account(double balance, double maxOverdraft, double maxWithdrawal) {
 		super();
 		this.balance = balance;
-		this.overdraft = overdraft;
 		this.maxOverdraft = maxOverdraft;
 		this.maxWithdrawal = maxWithdrawal;
+	}
+
+	public Account(double balance) {
+		super();
+		this.balance = balance;
 	}
 
 	public Account(Long id) {

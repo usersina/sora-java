@@ -46,6 +46,10 @@ public class Person {
 		this.address = address;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
