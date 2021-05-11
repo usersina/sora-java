@@ -18,3 +18,7 @@
 #btnDelete {
 	-fx-color: red;
 }
+
+.table-column-center {
+	-fx-alignment: CENTER;
+}

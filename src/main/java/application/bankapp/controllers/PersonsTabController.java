@@ -56,16 +56,16 @@ public class PersonsTabController implements Initializable {
 		this.personService = new PersonServiceImpl();
 		refreshPersons();
 
+		// Link table columns to class attributes
+		colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+		colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+		colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+
 		// Make table editable
 		tvPersons.setEditable(true);
 		colFirstName.setCellFactory(TextFieldTableCell.forTableColumn());
 		colLastName.setCellFactory(TextFieldTableCell.forTableColumn());
 		colAddress.setCellFactory(TextFieldTableCell.forTableColumn());
-
-		// Link table columns to class attributes
-		colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-		colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-		colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
 
 		// Set onEdit commit to update in table & in database
 		colFirstName.setOnEditCommit(new EventHandler<CellEditEvent<Person, String>>() {

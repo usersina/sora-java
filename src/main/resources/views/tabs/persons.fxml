@@ -18,7 +18,7 @@
           <TableColumn fx:id="colFirstName" prefWidth="161.0" text="First Name" />
           <TableColumn fx:id="colLastName" prefWidth="214.0" text="Last Name" />
             <TableColumn fx:id="colAddress" prefWidth="264.0" text="Address" />
-            <TableColumn fx:id="colDelete" prefWidth="309.0" text="Action" />
+            <TableColumn fx:id="colDelete" prefWidth="309.0" styleClass="table-column-center" text="Action" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

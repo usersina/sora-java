@@ -48,6 +48,10 @@ public class Account {
 		this.id = id;
 	}
 
+	public Long getId() {
+		return this.id;
+	}
+
 	public double getBalance() {
 		return balance;
 	}
