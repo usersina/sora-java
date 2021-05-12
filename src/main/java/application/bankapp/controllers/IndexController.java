@@ -6,13 +6,31 @@ import java.util.ResourceBundle;
 import application.bankapp.FXApp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 
 public class IndexController implements Initializable {
 
 	@FXML
-	private TabPane mainTabs;
+	private TabPane tpMain;
+
+	@FXML
+	private Tab dashboardTabPage;
+
+	@FXML
+	private Tab personsTabPage;
+
+	@FXML
+	private Tab accountsTabPage;
+
+	@FXML
+	private Tab operationsTabPage;
+
+	@FXML
+	private AccountsTabController accountsTabController;
+	// "Controller" is appended to fx:id under fx:include, therefore
+	// the above is not null
 
 	@FXML
 	void handleExit(MouseEvent event) {
@@ -28,13 +46,20 @@ public class IndexController implements Initializable {
 		setTabsListener();
 	}
 
+	// On Tab change, reload the appropriate data
 	void setTabsListener() {
-		/*
-		 * Nullpointer
-		 * 
-		 * mainTabs.getSelectionModel().selectedItemProperty().addListener((ov, oldTab,
-		 * newTab) -> { System.out.println("Tab changed!"); });
-		 */
+		tpMain.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+			String tabId = newTab.getId();
+			System.out.println("Switching to tab: " + tabId);
+			switch (tabId) {
+			case "accountsTabPage":
+				accountsTabController.refreshCbPersons();
+				break;
+			default:
+				break;
+			}
+		});
+
 	}
 
 }

@@ -8,24 +8,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.bankapp.controllers.IndexController">
    <children>
-      <TabPane layoutY="44.0" prefHeight="556.0" prefWidth="1000.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+      <TabPane fx:id="tpMain" layoutY="44.0" prefHeight="556.0" prefWidth="1000.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
         <tabs>
-          <Tab fx:id="tab1" text="Dashboard">
+          <Tab fx:id="dashboardTabPage" text="Dashboard">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="900.0" />
             </content>
           </Tab>
-          <Tab fx:id="tab2" text="Individuals">
+          <Tab fx:id="personsTabPage" text="Individuals">
             <content>
-            	<fx:include fx:id="personsTabPage" source="./tabs/persons.fxml" />
+            	<fx:include fx:id="personsTab" source="./tabs/persons.fxml" />
             </content>
           </Tab>
-            <Tab fx:id="tab3" text="Accounts">
+            <Tab fx:id="accountsTabPage" text="Accounts">
                <content>
-				<fx:include fx:id="accountsTabPage" source="./tabs/accounts.fxml" />
+				<fx:include fx:id="accountsTab" source="./tabs/accounts.fxml" />
                </content>
             </Tab>
-            <Tab fx:id="tab4" text="Operations">
+            <Tab fx:id="operationsTabPage" text="Operations">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>

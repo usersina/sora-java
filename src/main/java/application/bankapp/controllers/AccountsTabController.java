@@ -90,6 +90,7 @@ public class AccountsTabController implements Initializable {
 
 	// -----------------------------//
 	void refreshCbPersons() {
+		resetFields();
 		comboPersons.getItems().addAll(personService.getAllPersons());
 	}
 
@@ -99,6 +100,16 @@ public class AccountsTabController implements Initializable {
 		// this.accountService.getAccountsByPersonId();
 		this.selectedPerson = this.personService.getPerson(this.selectedPerson.getId());
 		tvAccounts.getItems().setAll(this.selectedPerson.getAccounts());
+	}
+
+	void resetFields() {
+		try {
+			comboPersons.getItems().clear();
+			tvAccounts.getItems().clear();
+			tfBalance.setText("0");
+		} catch (Exception e) {
+			System.out.println("Already empty!");
+		}
 	}
 
 	/*
