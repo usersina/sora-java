@@ -15,7 +15,7 @@
 	-fx-faint-focus-color: transparent;
 }
 
-#btnDelete {
+.btnDelete {
 	-fx-color: red;
 }
 

@@ -28,9 +28,12 @@ public class AccountRepository {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.delete(session.get(Account.class, id));
+			Account acc = session.get(Account.class, id);
+			acc.getPerson().getAccounts().remove(acc);
+			session.delete(acc);
 			transaction.commit();
 		} catch (Exception e) {
+			System.out.println("Exception: " + e);
 			if (transaction != null)
 				transaction.rollback();
 		}

@@ -105,7 +105,7 @@ public class PersonsTabController implements Initializable {
 					setGraphic(null);
 					return;
 				}
-				btnDeletePerson.setId("btnDelete");
+				btnDeletePerson.getStyleClass().add("btnDelete");
 				setGraphic(btnDeletePerson);
 				btnDeletePerson.setOnAction(event -> {
 					personService.deletePersonById(person.getId());

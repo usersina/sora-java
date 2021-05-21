@@ -9,11 +9,13 @@ import application.hibernate.services.AccountService;
 import application.hibernate.services.AccountServiceImpl;
 import application.hibernate.services.PersonService;
 import application.hibernate.services.PersonServiceImpl;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -48,6 +50,9 @@ public class AccountsTabController implements Initializable {
 	private TableColumn<Account, Double> colMaxOverdraft;
 
 	@FXML
+	private TableColumn<Account, Account> colDelete;
+
+	@FXML
 	private Button btnAddAccount;
 
 	@Override
@@ -68,6 +73,29 @@ public class AccountsTabController implements Initializable {
 		colBalance.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 		colMaxWithdrawal.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 		colMaxOverdraft.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+
+		// Add the delete button to the persons row
+		colDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		colDelete.setCellFactory(param -> new TableCell<Account, Account>() {
+			private final Button btnDeletePerson = new Button("Delete");
+
+			@Override
+			public void updateItem(Account account, boolean empty) {
+				super.updateItem(account, empty);
+				if (account == null) {
+					setGraphic(null);
+					return;
+				}
+				btnDeletePerson.getStyleClass().add("btnDelete");
+				setGraphic(btnDeletePerson);
+				btnDeletePerson.setOnAction(event -> {
+					// Remove from UI
+					tvAccounts.getItems().remove(account);
+					// Remove from DB
+					accountService.deleteAccountById(account.getId());
+				});
+			}
+		});
 	}
 
 	@FXML
@@ -77,6 +105,7 @@ public class AccountsTabController implements Initializable {
 			this.accountService.saveAccount(new Account(Double.parseDouble(tfBalance.getText())),
 					this.selectedPerson.getId());
 			refreshAccountsBySelectedPerson();
+			tfBalance.setText("0");
 		} catch (Exception e) {
 			System.out.println("Error adding your account! Check balance input or account!");
 		}
