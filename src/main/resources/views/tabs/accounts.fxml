@@ -10,11 +10,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.bankapp.controllers.AccountsTabController">
 	<children>
-      <TableView fx:id="tvAccounts" layoutX="38.0" layoutY="164.0" prefHeight="381.0" prefWidth="816.0">
+      <TableView fx:id="tvAccounts" layoutX="38.0" layoutY="164.0" prefHeight="319.0" prefWidth="816.0">
          <columns>
             <TableColumn fx:id="colNumber" prefWidth="199.0" styleClass="table-column-center" text="Account Id" />
             <TableColumn fx:id="colBalance" prefWidth="199.0" styleClass="table-column-center" text="Balance" />
@@ -48,5 +49,15 @@
             <ComboBox fx:id="comboPersons" onAction="#handleCbPersonsChange" prefHeight="25.0" prefWidth="410.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="491.0" prefHeight="45.0" prefWidth="360.0" spacing="5.0">
+         <children>
+            <TextField fx:id="tfChangeAmount" />
+            <Button fx:id="btnDeposit" mnemonicParsing="false" onAction="#handleDeposit" text="Deposit" />
+            <Button fx:id="btnWithdraw" mnemonicParsing="false" onAction="#handleWithdraw" text="Withdraw" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
    </children>
 </AnchorPane>

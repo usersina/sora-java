@@ -14,8 +14,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account updateAccount(Account account, Long personId) {
-		return accountRepository.save(account, personId);
+	public Account updateAccount(Account account) {
+		return accountRepository.update(account);
 	}
 
 	@Override

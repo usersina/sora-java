@@ -99,4 +99,28 @@ public class Account {
 				+ maxOverdraft + ", maxWithdrawal=" + maxWithdrawal + ", person=" + person + "]";
 	}
 
+	public void updateOverdraft() {
+		if (this.balance < 0)
+			this.setOverdraft(-this.balance);
+		else
+			this.setOverdraft(0);
+	}
+
+	public void deposit(Double amount) {
+		this.setBalance(this.balance + amount);
+		this.updateOverdraft();
+	}
+
+	public boolean withdraw(Double amount) {
+		if (amount > this.maxWithdrawal)
+			return false;
+
+		Double newAmount = this.balance - amount;
+		if (newAmount < -this.maxOverdraft)
+			return false;
+
+		this.setBalance(newAmount);
+		this.updateOverdraft();
+		return true;
+	}
 }

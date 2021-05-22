@@ -11,12 +11,14 @@ import application.hibernate.services.PersonService;
 import application.hibernate.services.PersonServiceImpl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,6 +29,7 @@ public class AccountsTabController implements Initializable {
 	AccountService accountService;
 	PersonService personService;
 	Person selectedPerson;
+	Account selectedAccount = null;
 
 	@FXML
 	private ComboBox<Person> comboPersons;
@@ -55,12 +58,23 @@ public class AccountsTabController implements Initializable {
 	@FXML
 	private Button btnAddAccount;
 
+	@FXML
+	private TextField tfChangeAmount;
+
+	@FXML
+	private Button btnDeposit;
+
+	@FXML
+	private Button btnWithdraw;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("AccountsTab, initializing...");
 		this.accountService = new AccountServiceImpl();
 		this.personService = new PersonServiceImpl();
 		refreshCbPersons();
+		setTvAccountsListener();
+		disableOpsBtn();
 
 		// Link table columns to class attributes
 		colNumber.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -70,9 +84,26 @@ public class AccountsTabController implements Initializable {
 
 		// Make table editable
 		tvAccounts.setEditable(true);
-		colBalance.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 		colMaxWithdrawal.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 		colMaxOverdraft.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+
+		// Set onEdit commit to update in table & in database
+		colMaxWithdrawal.setOnEditCommit(new EventHandler<CellEditEvent<Account, Double>>() {
+			@Override
+			public void handle(CellEditEvent<Account, Double> event) {
+				Account account = event.getRowValue();
+				account.setMaxWithdrawal(event.getNewValue());
+				accountService.updateAccount(account);
+			}
+		});
+		colMaxOverdraft.setOnEditCommit(new EventHandler<CellEditEvent<Account, Double>>() {
+			@Override
+			public void handle(CellEditEvent<Account, Double> event) {
+				Account account = event.getRowValue();
+				account.setMaxOverdraft(event.getNewValue());
+				accountService.updateAccount(account);
+			}
+		});
 
 		// Add the delete button to the persons row
 		colDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
@@ -117,7 +148,52 @@ public class AccountsTabController implements Initializable {
 		refreshAccountsBySelectedPerson();
 	}
 
+	@FXML
+	void handleDeposit(ActionEvent event) {
+		if (selectedAccount == null) {
+			// Should be unreachable
+			return;
+		}
+		try {
+			Double amount = Double.parseDouble(tfChangeAmount.getText());
+			selectedAccount.deposit(amount);
+			accountService.updateAccount(selectedAccount);
+			refreshAccountsBySelectedPerson();
+		} catch (Exception e) {
+			System.err.println("Cannot convert non number");
+		}
+	}
+
+	@FXML
+	void handleWithdraw(ActionEvent event) {
+		if (selectedAccount == null) {
+			// Should be unreachable
+			return;
+		}
+		try {
+			Double amount = Double.parseDouble(tfChangeAmount.getText());
+			selectedAccount.withdraw(amount);
+			// refreshAccountsBySelectedPerson();
+			System.out.println(selectedAccount);
+		} catch (Exception e) {
+			System.err.println("Cannot convert non number");
+		}
+	}
+
 	// -----------------------------//
+
+	void setTvAccountsListener() {
+		tvAccounts.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if (newSelection == null) {
+				disableOpsBtn();
+				return;
+			}
+			enableOpsBtn();
+			System.out.println("Selected account is: " + newSelection);
+			selectedAccount = newSelection;
+		});
+	}
+
 	void refreshCbPersons() {
 		resetFields();
 		comboPersons.getItems().addAll(personService.getAllPersons());
@@ -136,11 +212,23 @@ public class AccountsTabController implements Initializable {
 			comboPersons.getItems().clear();
 			tvAccounts.getItems().clear();
 			tfBalance.setText("0");
+			tfChangeAmount.setText("");
 		} catch (Exception e) {
 			System.out.println("Already empty!");
 		}
 	}
 
+	void enableOpsBtn() {
+		btnDeposit.setDisable(false);
+		btnWithdraw.setDisable(false);
+		tfChangeAmount.setDisable(false);
+	}
+
+	void disableOpsBtn() {
+		btnDeposit.setDisable(true);
+		btnWithdraw.setDisable(true);
+		tfChangeAmount.setDisable(true);
+	}
 	/*
 	 * Matches integer, update to match double & call in initialize void
 	 * validateBalance() { tfBalance.textProperty().addListener((observable,
