@@ -72,9 +72,7 @@ public class AccountsTabController implements Initializable {
 		System.out.println("AccountsTab, initializing...");
 		this.accountService = new AccountServiceImpl();
 		this.personService = new PersonServiceImpl();
-		refreshCbPersons();
 		setTvAccountsListener();
-		disableOpsBtn();
 
 		// Link table columns to class attributes
 		colNumber.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -144,8 +142,13 @@ public class AccountsTabController implements Initializable {
 
 	@FXML
 	void handleCbPersonsChange(ActionEvent event) {
-		this.selectedPerson = comboPersons.getValue();
-		refreshAccountsBySelectedPerson();
+		try {
+			this.selectedPerson = comboPersons.getValue();
+			enableAddBtn();
+			refreshAccountsBySelectedPerson();
+		} catch (Exception e) {
+			System.out.println("On combo change is null!");
+		}
 	}
 
 	@FXML
@@ -172,9 +175,12 @@ public class AccountsTabController implements Initializable {
 		}
 		try {
 			Double amount = Double.parseDouble(tfChangeAmount.getText());
-			selectedAccount.withdraw(amount);
-			// refreshAccountsBySelectedPerson();
-			System.out.println(selectedAccount);
+			if (selectedAccount.withdraw(amount, true)) {
+				accountService.updateAccount(selectedAccount);
+				refreshAccountsBySelectedPerson();
+				return;
+			}
+			System.err.println("Cannot withdraw!");
 		} catch (Exception e) {
 			System.err.println("Cannot convert non number");
 		}
@@ -208,14 +214,10 @@ public class AccountsTabController implements Initializable {
 	}
 
 	void resetFields() {
-		try {
-			comboPersons.getItems().clear();
-			tvAccounts.getItems().clear();
-			tfBalance.setText("0");
-			tfChangeAmount.setText("");
-		} catch (Exception e) {
-			System.out.println("Already empty!");
-		}
+		comboPersons.getItems().clear();
+		tvAccounts.getItems().clear();
+		tfBalance.setText("0");
+		tfChangeAmount.setText("");
 	}
 
 	void enableOpsBtn() {
@@ -228,6 +230,20 @@ public class AccountsTabController implements Initializable {
 		btnDeposit.setDisable(true);
 		btnWithdraw.setDisable(true);
 		tfChangeAmount.setDisable(true);
+	}
+
+	void enableAddBtn() {
+		btnAddAccount.setDisable(false);
+	}
+
+	void disableAddBtn() {
+		btnAddAccount.setDisable(true);
+	}
+
+	void onTabOpen() {
+		refreshCbPersons();
+		disableOpsBtn();
+		disableAddBtn();
 	}
 	/*
 	 * Matches integer, update to match double & call in initialize void

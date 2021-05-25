@@ -29,8 +29,14 @@ public class IndexController implements Initializable {
 
 	@FXML
 	private AccountsTabController accountsTabController;
-	// "Controller" is appended to fx:id under fx:include, therefore
-	// the above is not null
+	// "Controller" is appended to fx:id under fx:include,
+	// therefore the above is not null
+
+	@FXML
+	private OperationsTabController operationsTabController;
+
+	@FXML
+	private DashboardTabController dashboardTabController;
 
 	@FXML
 	void handleExit(MouseEvent event) {
@@ -52,8 +58,14 @@ public class IndexController implements Initializable {
 			String tabId = newTab.getId();
 			System.out.println("Switching to tab: " + tabId);
 			switch (tabId) {
+			case "dashboardTabPage":
+				dashboardTabController.onTabOpen();
+				break;
 			case "accountsTabPage":
-				accountsTabController.refreshCbPersons();
+				accountsTabController.onTabOpen();
+				break;
+			case "operationsTabPage":
+				operationsTabController.onTabOpen();
 				break;
 			default:
 				break;

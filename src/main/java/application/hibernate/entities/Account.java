@@ -42,6 +42,8 @@ public class Account {
 	public Account(double balance) {
 		super();
 		this.balance = balance;
+		if (balance < -this.maxOverdraft)
+			this.setMaxOverdraft(-balance);
 	}
 
 	public Account(Long id) {
@@ -100,6 +102,7 @@ public class Account {
 	}
 
 	public void updateOverdraft() {
+		System.out.println("Updating overdraft: " + this.balance);
 		if (this.balance < 0)
 			this.setOverdraft(-this.balance);
 		else
@@ -111,8 +114,8 @@ public class Account {
 		this.updateOverdraft();
 	}
 
-	public boolean withdraw(Double amount) {
-		if (amount > this.maxWithdrawal)
+	public boolean withdraw(Double amount, boolean withLimit) {
+		if (withLimit && amount > this.maxWithdrawal)
 			return false;
 
 		Double newAmount = this.balance - amount;

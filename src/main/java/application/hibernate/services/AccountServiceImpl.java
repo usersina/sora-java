@@ -32,4 +32,14 @@ public class AccountServiceImpl implements AccountService {
 	public List<Account> getAllAccounts() {
 		return accountRepository.findAll();
 	}
+
+	@Override
+	public Account getRichestAccount() {
+		return accountRepository.findRichest();
+	}
+
+	@Override
+	public List<Account> getAllOverdraftAccounts() {
+		return accountRepository.findAllOverdraft();
+	}
 }

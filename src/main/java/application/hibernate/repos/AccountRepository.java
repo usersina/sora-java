@@ -79,4 +79,35 @@ public class AccountRepository {
 		}
 		return persons;
 	}
+
+	public Account findRichest() {
+		Transaction transaction = null;
+		Account account = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			account = session
+					.createQuery("FROM Account WHERE balance = (SELECT MAX(balance) FROM Account)", Account.class)
+					.list().get(0);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null)
+				transaction.rollback();
+		}
+		return account;
+	}
+
+	public List<Account> findAllOverdraft() {
+		Transaction transaction = null;
+		List<Account> accounts = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			accounts = session.createQuery("FROM Account WHERE overdraft != 0 ORDER BY overdraft DESC", Account.class)
+					.list();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null)
+				transaction.rollback();
+		}
+		return accounts;
+	}
 }

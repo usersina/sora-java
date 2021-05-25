@@ -14,4 +14,8 @@ public interface AccountService {
 	Account getAccount(Long id);
 
 	List<Account> getAllAccounts();
+
+	Account getRichestAccount();
+
+	List<Account> getAllOverdraftAccounts();
 }

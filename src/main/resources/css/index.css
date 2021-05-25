@@ -15,6 +15,14 @@
 	-fx-faint-focus-color: transparent;
 }
 
+.anchorContainer {
+	-fx-background-color: #e0e0eb;
+}
+
+.tabContainer {
+	-fx-background-color: #f0f0f5;
+}
+
 .btnDelete {
 	-fx-color: red;
 }
