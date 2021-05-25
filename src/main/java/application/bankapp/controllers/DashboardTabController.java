@@ -55,11 +55,20 @@ public class DashboardTabController implements Initializable {
 	}
 
 	void onTabOpen() {
-		this.tvRedAccounts.getItems().setAll(this.accountService.getAllOverdraftAccounts());
-		this.richestAccount = this.accountService.getRichestAccount();
-		this.labelRichestAccountId.setText(richestAccount.getId().toString());
-		this.labelRichestBalance.setText(Double.toString(richestAccount.getBalance()));
-		this.labelRichestPersonName.setText(richestAccount.getPerson().toString());
+		try {
+			this.tvRedAccounts.getItems().setAll(this.accountService.getAllOverdraftAccounts());
+		} catch (Exception e) {
+			System.out.println("No accounts yet!");
+		}
+
+		try {
+			this.richestAccount = this.accountService.getRichestAccount();
+			this.labelRichestAccountId.setText(richestAccount.getId().toString());
+			this.labelRichestBalance.setText(Double.toString(richestAccount.getBalance()));
+			this.labelRichestPersonName.setText(richestAccount.getPerson().toString());
+		} catch (Exception e) {
+			System.out.println("No richest account yet!");
+		}
 	}
 
 }

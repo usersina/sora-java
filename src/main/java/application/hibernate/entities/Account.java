@@ -42,8 +42,10 @@ public class Account {
 	public Account(double balance) {
 		super();
 		this.balance = balance;
-		if (balance < -this.maxOverdraft)
+		if (balance < -this.maxOverdraft) {
 			this.setMaxOverdraft(-balance);
+			this.setOverdraft(balance);
+		}
 	}
 
 	public Account(Long id) {
@@ -59,7 +61,6 @@ public class Account {
 	}
 
 	public void setBalance(double balance) {
-		// TODO: Update overdraft here maybe
 		this.balance = balance;
 	}
 

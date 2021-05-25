@@ -8,7 +8,6 @@ import org.hibernate.Transaction;
 import application.hibernate.entities.Person;
 import application.hibernate.util.HibernateUtil;
 
-// TODO:
 public class PersonRepository {
 	public PersonRepository() {
 	}

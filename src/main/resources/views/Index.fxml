@@ -16,7 +16,7 @@
             </content>
           </Tab>
           <Tab fx:id="personsTabPage" text="Individuals">
-            <content>
+            <content> 
             	<fx:include fx:id="personsTab" source="./tabs/persons.fxml" />
             </content>
           </Tab>

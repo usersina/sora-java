@@ -36,9 +36,9 @@
             <Label text="Account ID" textFill="#808080" />
             <Label text="Balance" textFill="GREY" GridPane.rowIndex="1" />
             <Label text="Person name" textFill="GREY" GridPane.rowIndex="2" />
-            <Label fx:id="labelRichestAccountId" text="75" GridPane.columnIndex="1" />
-            <Label fx:id="labelRichestBalance" text="5000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="labelRichestPersonName" text="My Tester" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="labelRichestAccountId" text="" GridPane.columnIndex="1" />
+            <Label fx:id="labelRichestBalance" text="No data yet!" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="labelRichestPersonName" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Label layoutX="38.0" layoutY="14.0" text="Richest Account">
