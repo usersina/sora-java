@@ -1,8 +1,11 @@
 package application.bankapp.controllers;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.helpers.nodes.ConfirmActionAlert;
+import application.helpers.nodes.DualHBoxButtons;
 import application.hibernate.entities.Person;
 import application.hibernate.services.PersonService;
 import application.hibernate.services.PersonServiceImpl;
@@ -12,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
@@ -96,7 +100,7 @@ public class PersonsTabController implements Initializable {
 		// Add the delete button to the persons row
 		colDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		colDelete.setCellFactory(param -> new TableCell<Person, Person>() {
-			private final Button btnDeletePerson = new Button("Delete");
+			private final DualHBoxButtons myDualHBoxButtons = new DualHBoxButtons("Edit", "Delete");
 
 			@Override
 			public void updateItem(Person person, boolean empty) {
@@ -105,11 +109,23 @@ public class PersonsTabController implements Initializable {
 					setGraphic(null);
 					return;
 				}
-				btnDeletePerson.getStyleClass().add("btnDelete");
-				setGraphic(btnDeletePerson);
-				btnDeletePerson.setOnAction(event -> {
-					personService.deletePersonById(person.getId());
-					refreshPersons();
+
+				myDualHBoxButtons.addBtnStyles("btnEdit", "btnDelete");
+				setGraphic(myDualHBoxButtons.getMainNode());
+
+				myDualHBoxButtons.setEventHandlers(event -> {
+					System.out.println("Show another scene for editing maybe");
+				}, event -> {
+					final ConfirmActionAlert myConfirmActionAlert = new ConfirmActionAlert(
+							"Confirm individual deletion",
+							"Are you sure you want to delete this person?\nAll associated accounts will be deleted as well!",
+							"Yes, delete it!");
+
+					Optional<ButtonType> res = myConfirmActionAlert.showAlertAndWait();
+					if (myConfirmActionAlert.isConfirmed(res)) {
+						personService.deletePersonById(person.getId());
+						refreshPersons();
+					}
 				});
 			}
 		});

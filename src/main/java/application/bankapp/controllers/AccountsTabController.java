@@ -1,8 +1,11 @@
 package application.bankapp.controllers;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.helpers.nodes.ConfirmActionAlert;
+import application.helpers.nodes.DualHBoxButtons;
 import application.hibernate.entities.Account;
 import application.hibernate.entities.Person;
 import application.hibernate.services.AccountService;
@@ -15,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -106,7 +110,7 @@ public class AccountsTabController implements Initializable {
 		// Add the delete button to the persons row
 		colDelete.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 		colDelete.setCellFactory(param -> new TableCell<Account, Account>() {
-			private final Button btnDeletePerson = new Button("Delete");
+			private final DualHBoxButtons myDualHBoxButtons = new DualHBoxButtons("Edit", "Delete");
 
 			@Override
 			public void updateItem(Account account, boolean empty) {
@@ -115,13 +119,23 @@ public class AccountsTabController implements Initializable {
 					setGraphic(null);
 					return;
 				}
-				btnDeletePerson.getStyleClass().add("btnDelete");
-				setGraphic(btnDeletePerson);
-				btnDeletePerson.setOnAction(event -> {
-					// Remove from UI
-					tvAccounts.getItems().remove(account);
-					// Remove from DB
-					accountService.deleteAccountById(account.getId());
+
+				myDualHBoxButtons.addBtnStyles("btnEdit", "btnDelete");
+				setGraphic(myDualHBoxButtons.getMainNode());
+
+				myDualHBoxButtons.setEventHandlers(event -> {
+					System.out.println("Show another scene for editing maybe");
+				}, event -> {
+					final ConfirmActionAlert myConfirmActionAlert = new ConfirmActionAlert("Confirm account deletion",
+							"Are you sure you want to delete this account?", "Yes, delete it!");
+
+					Optional<ButtonType> res = myConfirmActionAlert.showAlertAndWait();
+					if (myConfirmActionAlert.isConfirmed(res)) {
+						// Delete from UI
+						tvAccounts.getItems().remove(account);
+						// Delete from DB
+						accountService.deleteAccountById(account.getId());
+					}
 				});
 			}
 		});
@@ -144,8 +158,13 @@ public class AccountsTabController implements Initializable {
 	void handleCbPersonsChange(ActionEvent event) {
 		try {
 			this.selectedPerson = comboPersons.getValue();
-			enableAddBtn();
 			refreshAccountsBySelectedPerson();
+
+			// In case the first option is selected
+			if (this.selectedPerson.getId() != -1)
+				enableAddBtn();
+			else
+				disableAddBtn();
 		} catch (Exception e) {
 			System.out.println("On combo change is null!");
 		}
@@ -202,6 +221,11 @@ public class AccountsTabController implements Initializable {
 
 	void refreshCbPersons() {
 		resetFields();
+
+		// Add all accounts option & select it
+		this.comboPersons.getItems().add(0, new Person(-1L, "All", "Individuals"));
+		this.comboPersons.getSelectionModel().select(0);
+
 		comboPersons.getItems().addAll(personService.getAllPersons());
 	}
 
@@ -209,6 +233,10 @@ public class AccountsTabController implements Initializable {
 		// Re-fetch the selected person to get his accounts again
 		// A better approach is to create & call
 		// this.accountService.getAccountsByPersonId();
+		if (this.selectedPerson.getId() == -1L) {
+			this.tvAccounts.getItems().setAll(this.accountService.getAllAccounts());
+			return;
+		}
 		this.selectedPerson = this.personService.getPerson(this.selectedPerson.getId());
 		tvAccounts.getItems().setAll(this.selectedPerson.getAccounts());
 	}

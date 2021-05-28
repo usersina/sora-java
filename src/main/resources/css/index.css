@@ -1,32 +1,36 @@
 .container {
-	-fx-background-color: #20120F;
+  -fx-background-color: #20120f;
 }
 
 .tab *.tab-label {
-	-fx-rotate: 90;
+  -fx-rotate: 90;
 }
 
 .tab {
-	-fx-padding: 3em 0.2em 3em 0.2em;
+  -fx-padding: 3em 0.2em 3em 0.2em;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected {
-	-fx-focus-color: transparent;
-	-fx-faint-focus-color: transparent;
+  -fx-focus-color: transparent;
+  -fx-faint-focus-color: transparent;
 }
 
 .anchorContainer {
-	-fx-background-color: #e0e0eb;
+  -fx-background-color: #e0e0eb;
 }
 
 .tabContainer {
-	-fx-background-color: #f0f0f5;
+  -fx-background-color: #f0f0f5;
 }
 
+/* .btnEdit {
+  -fx-color: '#ffc107';
+} */
+
 .btnDelete {
-	-fx-color: red;
+  -fx-color: red;
 }
 
 .table-column-center {
-	-fx-alignment: CENTER;
+  -fx-alignment: CENTER;
 }
