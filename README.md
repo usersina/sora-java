@@ -12,7 +12,7 @@
 ## Usage
 1. Start a database.
 2. Edit `src/main/resources/hibernate.cfg.xml` to match your database configuration.
-3. Launch `application.bankuapp.App`
+3. Launch `application.bankapp.App`
 
 ## Showcase
 ![alt](media/demo_x30ms.gif)
