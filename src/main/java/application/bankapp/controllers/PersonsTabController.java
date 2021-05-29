@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.helpers.nodes.ConfirmActionAlert;
 import application.helpers.nodes.DualHBoxButtons;
+import application.helpers.nodes.ModalWindow;
 import application.hibernate.entities.Person;
 import application.hibernate.services.PersonService;
 import application.hibernate.services.PersonServiceImpl;
@@ -58,7 +59,6 @@ public class PersonsTabController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("PersonsTab, initializing...");
 		this.personService = new PersonServiceImpl();
-		refreshPersons();
 
 		// Link table columns to class attributes
 		colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -114,7 +114,12 @@ public class PersonsTabController implements Initializable {
 				setGraphic(myDualHBoxButtons.getMainNode());
 
 				myDualHBoxButtons.setEventHandlers(event -> {
-					System.out.println("Show another scene for editing maybe");
+					ModalWindow personModal = new ModalWindow(ModalWindow.PersonModal, "Update person");
+					personModal.loadObjectData(person);
+					personModal.showModalAndWait();
+					if (personModal.didUpdate()) {
+						refreshPersons();
+					}
 				}, event -> {
 					final ConfirmActionAlert myConfirmActionAlert = new ConfirmActionAlert(
 							"Confirm individual deletion",
@@ -123,8 +128,10 @@ public class PersonsTabController implements Initializable {
 
 					Optional<ButtonType> res = myConfirmActionAlert.showAlertAndWait();
 					if (myConfirmActionAlert.isConfirmed(res)) {
+						// Remove from UI
+						tvPersons.getItems().remove(person);
+						// Remove from DB
 						personService.deletePersonById(person.getId());
-						refreshPersons();
 					}
 				});
 			}
@@ -147,6 +154,10 @@ public class PersonsTabController implements Initializable {
 	// ----------------------------------//
 	void refreshPersons() {
 		tvPersons.getItems().setAll(personService.getAllPersons());
+	}
+
+	public void onTabOpen() {
+		refreshPersons();
 	}
 
 }

@@ -2,7 +2,7 @@ package application.helpers.nodes;
 
 import java.io.IOException;
 
-import application.helpers.nodes.controllers.IModalController;
+import application.helpers.nodes.interfaces.IModalController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

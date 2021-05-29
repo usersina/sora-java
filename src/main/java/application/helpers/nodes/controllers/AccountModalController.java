@@ -3,6 +3,7 @@ package application.helpers.nodes.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.helpers.nodes.interfaces.IModalController;
 import application.hibernate.entities.Account;
 import application.hibernate.services.AccountService;
 import application.hibernate.services.AccountServiceImpl;
@@ -12,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class AccountModalController implements IModalController, Initializable {
@@ -49,11 +49,6 @@ public class AccountModalController implements IModalController, Initializable {
 
     @FXML
     void handleCancel(ActionEvent event) {
-        closeThisWindow(event);
-    }
-
-    @FXML
-    void handleExit(MouseEvent event) {
         closeThisWindow(event);
     }
 
