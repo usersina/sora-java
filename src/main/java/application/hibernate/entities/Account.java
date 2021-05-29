@@ -41,11 +41,7 @@ public class Account {
 
 	public Account(double balance) {
 		super();
-		this.balance = balance;
-		if (balance < -this.maxOverdraft) {
-			this.setMaxOverdraft(-balance);
-			this.setOverdraft(balance);
-		}
+		this.setBalance(balance);
 	}
 
 	public Account(Long id) {
@@ -60,8 +56,14 @@ public class Account {
 		return balance;
 	}
 
+	// Will set the max overdraft accordingly to match
+	// the described behaviour
 	public void setBalance(double balance) {
 		this.balance = balance;
+		if (balance < -this.maxOverdraft) {
+			this.setMaxOverdraft(-balance);
+			this.setOverdraft(balance);
+		}
 	}
 
 	public double getOverdraft() {
@@ -76,8 +78,20 @@ public class Account {
 		return maxOverdraft;
 	}
 
-	public void setMaxOverdraft(double maxOverdraft) {
+	// Used in AccountModal in combination with setBalance
+	// To match maxOverdraft & balance if balance is negative
+	public void setMaxOverdraftNoCheck(double maxOverdraft) {
 		this.maxOverdraft = maxOverdraft;
+	}
+
+	public boolean setMaxOverdraft(double maxOverdraft) {
+		if (this.balance < 0) {
+			if (maxOverdraft < -this.balance) {
+				return false;
+			}
+		}
+		this.maxOverdraft = maxOverdraft;
+		return true;
 	}
 
 	public double getMaxWithdrawal() {

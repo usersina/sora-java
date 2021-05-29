@@ -67,6 +67,9 @@ public class DashboardTabController implements Initializable {
 			this.labelRichestBalance.setText(Double.toString(richestAccount.getBalance()));
 			this.labelRichestPersonName.setText(richestAccount.getPerson().toString());
 		} catch (Exception e) {
+			this.labelRichestAccountId.setText("");
+			this.labelRichestBalance.setText("No data yet!");
+			this.labelRichestPersonName.setText("");
 			System.out.println("No richest account yet!");
 		}
 	}

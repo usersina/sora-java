@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.helpers.nodes.ConfirmActionAlert;
 import application.helpers.nodes.DualHBoxButtons;
+import application.helpers.nodes.ModalWindow;
 import application.hibernate.entities.Account;
 import application.hibernate.entities.Person;
 import application.hibernate.services.AccountService;
@@ -102,8 +103,14 @@ public class AccountsTabController implements Initializable {
 			@Override
 			public void handle(CellEditEvent<Account, Double> event) {
 				Account account = event.getRowValue();
-				account.setMaxOverdraft(event.getNewValue());
-				accountService.updateAccount(account);
+				if (account.setMaxOverdraft(event.getNewValue())) {
+					// Can update overdraft, update the account
+					accountService.updateAccount(account);
+				} else {
+					// Rollback to old value
+					event.getTableView().getItems().set(event.getTablePosition().getRow(), account);
+					System.err.println("Alert: Invalid value!");
+				}
 			}
 		});
 
@@ -124,7 +131,12 @@ public class AccountsTabController implements Initializable {
 				setGraphic(myDualHBoxButtons.getMainNode());
 
 				myDualHBoxButtons.setEventHandlers(event -> {
-					System.out.println("Show another scene for editing maybe");
+					ModalWindow accountModal = new ModalWindow(ModalWindow.AccountModal, "Update account");
+					accountModal.loadObjectData(account);
+					accountModal.showModalAndWait();
+					if (accountModal.didUpdate()) {
+						refreshAccountsBySelectedPerson();
+					}
 				}, event -> {
 					final ConfirmActionAlert myConfirmActionAlert = new ConfirmActionAlert("Confirm account deletion",
 							"Are you sure you want to delete this account?", "Yes, delete it!");
