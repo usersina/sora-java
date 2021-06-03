@@ -22,7 +22,7 @@
           </Tab>
             <Tab fx:id="accountsTabPage" text="Accounts">
                <content>
-				<fx:include fx:id="accountsTab" source="./tabs/accounts.fxml" />
+				      <fx:include fx:id="accountsTab" source="./tabs/accounts.fxml" />
                </content>
             </Tab>
             <Tab fx:id="operationsTabPage" text="Operations">
