@@ -9,35 +9,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="740.0" styleClass="container" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="740.0" styleClass="container" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.LoginController">
    <children>
       <ImageView fitHeight="420.0" fitWidth="740.0" opacity="0.18" pickOnBounds="true">
          <image>
-            <Image url="@../images/money_background.jpg" />
+            <Image url="@../images/books_background.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="383.0" layoutY="56.0" prefHeight="324.0" prefWidth="297.0" styleClass="sub-container">
          <children>
             <TextField fx:id="tfEmail" layoutX="36.0" layoutY="118.0" prefHeight="25.0" prefWidth="219.0" promptText="Email " />
             <PasswordField fx:id="tfPassword" layoutX="36.0" layoutY="177.0" prefHeight="25.0" prefWidth="219.0" promptText="Password" />
-            <Button fx:id="btnSignIn" layoutX="36.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="25.0" prefWidth="219.0" text="Sign In" />
+            <Button fx:id="btnSignIn" layoutX="36.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="25.0" prefWidth="219.0" text="Continue" />
             <Label layoutX="118.0" layoutY="38.0" text="Sign In" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="41.0" layoutY="144.0" text="Welcome to Bankapp" textFill="WHITE">
+      <Label layoutX="41.0" layoutY="144.0" text="Welcome to SORA" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="41.0" layoutY="184.0" prefHeight="92.0" prefWidth="307.0" text="This is a simple bank application with full crud &#10;functionality that connects to a MySql 8.0 Database&#10;&amp; uses Hibernate as the ORM.&#10;" textFill="WHITE" />
-      <Label layoutX="699.0" onMouseClicked="#handleExit" prefHeight="53.0" prefWidth="24.0" text="X" textFill="WHITE">
-         <font>
-            <Font size="39.0" />
-         </font>
-      </Label>
+      <Label layoutX="41.0" layoutY="184.0" prefHeight="92.0" prefWidth="307.0" text="This is an Online Reader Application with full CRUD functionality that connects to a MySQL 8.0 with Hibernate as the ORM.&#10;" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CLIP" wrapText="true" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="696.0" layoutY="14.0" onMouseClicked="#handleExit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/x%20-%20white.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -1,11 +1,21 @@
 .container {
-	-fx-background-color: "#20120F";
+  -fx-background-color: #20120f;
+}
+.sub-container {
+  -fx-background-color: #9c2b27;
+  -fx-background-radius: 10;
 }
 
-.sub-container {
-	-fx-background-color: "#9c2b27";
+.text-field {
+  -fx-text-fill: #ffffff;
+  -fx-background-color: white, #9c2b27;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-background-radius: 0;
+}
+.text-field:focused {
+  -fx-background-color: #e5e5e5, #9c2b27;
 }
 
 #btn {
-	-fx-background-color: "#ff0000";
+  -fx-background-color: #ff0000;
 }

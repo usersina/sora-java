@@ -9,23 +9,46 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
+enum AppTabPage {
+	HOME,
+	FEATURED,
+	COLLECTION,
+	SETTINGS
+}
+
+/**
+ * The index controller of the wrapper that popus after the initial login and
+ * contains all other tabs.
+ * <p>
+ * 
+ * Note that:
+ * <ul>
+ * <li>This file also includes references to all other controllers to handle
+ * which logic should be executed when the tab changes with {@code onTabOpen()}.
+ * <li>The "Controller" is appended to the "fx:id" attributed under <fx:include>
+ * therefore the references are not null.
+ * </ul>
+ */
 public class IndexController implements Initializable {
+	@FXML
+	private AnchorPane mainAp;
 
 	@FXML
-	private TabPane tpMain;
+	private TabPane mainTp;
 
 	@FXML
-	private Tab dashboardTabPage;
+	private Tab home;
 
 	@FXML
-	private Tab personsTabPage;
+	private Tab featured;
 
 	@FXML
-	private Tab accountsTabPage;
+	private Tab collection;
 
 	@FXML
-	private Tab operationsTabPage;
+	private Tab settings;
 
 	@FXML
 	private DashboardTabController dashboardTabController;
@@ -49,31 +72,31 @@ public class IndexController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("Initializing index controller...");
-
 		// Resize window to match window size
-		FXApp.resizeWindow(1000, 600);
+		FXApp.resizeWindow((int) mainAp.getPrefWidth(), (int) mainAp.getPrefHeight());
 		setTabsListener();
 	}
 
 	// On Tab change, reload the appropriate data
 	void setTabsListener() {
-		tpMain.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
-			String tabId = newTab.getId();
+		mainTp.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+			String tabId = newTab.getId().toUpperCase();
 			System.out.println("Switching to tab: " + tabId);
-			switch (tabId) {
-				case "dashboardTabPage":
-					dashboardTabController.onTabOpen();
+			switch (AppTabPage.valueOf(tabId)) {
+				case HOME:
+					// dashboardTabController.onTabOpen();
 					break;
-				case "personsTabPage":
-					personsTabController.onTabOpen();
+				case FEATURED:
+					// personsTabController.onTabOpen();
 					break;
-				case "accountsTabPage":
-					accountsTabController.onTabOpen();
+				case COLLECTION:
+					// accountsTabController.onTabOpen();
 					break;
-				case "operationsTabPage":
-					operationsTabController.onTabOpen();
+				case SETTINGS:
+					// operationsTabController.onTabOpen();
 					break;
 				default:
+					System.err.println("Opening unhandled tab " + tabId);
 					break;
 			}
 		});

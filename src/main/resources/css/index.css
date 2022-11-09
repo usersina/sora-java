@@ -3,11 +3,13 @@
 }
 
 .tab *.tab-label {
-  -fx-rotate: 90;
+  -fx-rotate: 0;
 }
 
 .tab {
   -fx-padding: 3em 0.2em 3em 0.2em;
+  -fx-pref-height: 160;
+  -fx-pref-width: 60;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected {
@@ -24,7 +26,7 @@
 }
 
 /* .btnEdit {
-  -fx-color: '#ffc107';
+  -fx-color: #ffc107;
 } */
 
 .btnDelete {

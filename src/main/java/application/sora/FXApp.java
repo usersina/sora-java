@@ -52,6 +52,13 @@ public class FXApp extends Application {
 		currentStage.getScene().setRoot(root);
 	}
 
+	/**
+	 * Resize the main window size to match the ones passed in the params.
+	 * This needs to be executed when changing from one scene to another.
+	 * 
+	 * @param width  the new width of the scene
+	 * @param height the new height of the scene
+	 */
 	public static void resizeWindow(int width, int height) {
 		currentStage.setWidth(width);
 		currentStage.setHeight(height);
