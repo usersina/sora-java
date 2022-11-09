@@ -6,31 +6,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="anchorContainer" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.bankapp.controllers.IndexController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="anchorContainer" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.IndexController">
    <children>
       <TabPane fx:id="tpMain" layoutY="44.0" prefHeight="556.0" prefWidth="1000.0" side="LEFT" styleClass="tabContainer" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
-        <tabs>
-          <Tab fx:id="dashboardTabPage" text="Dashboard">
-            <content>
-            	<fx:include fx:id="dashboardTab" source="./tabs/dashboard.fxml" />
-            </content>
-          </Tab>
-          <Tab fx:id="personsTabPage" text="Individuals">
-            <content> 
-            	<fx:include fx:id="personsTab" source="./tabs/persons.fxml" />
-            </content>
-          </Tab>
+         <tabs>
+            <Tab fx:id="dashboardTabPage" text="Dashboard">
+               <content>
+                  <fx:include fx:id="dashboardTab" source="./tabs/dashboard.fxml" />
+               </content>
+            </Tab>
+            <Tab fx:id="personsTabPage" text="Individuals">
+               <content>
+                  <fx:include fx:id="personsTab" source="./tabs/persons.fxml" />
+               </content>
+            </Tab>
             <Tab fx:id="accountsTabPage" text="Accounts">
                <content>
-				      <fx:include fx:id="accountsTab" source="./tabs/accounts.fxml" />
+                  <fx:include fx:id="accountsTab" source="./tabs/accounts.fxml" />
                </content>
             </Tab>
             <Tab fx:id="operationsTabPage" text="Operations">
                <content>
-               	<fx:include fx:id="operationsTab" source="./tabs/operations.fxml" />
+                  <fx:include fx:id="operationsTab" source="./tabs/operations.fxml" />
                </content>
             </Tab>
-        </tabs>
+         </tabs>
       </TabPane>
       <Label layoutX="970.0" layoutY="3.0" onMouseClicked="#handleExit" text="X">
          <font>

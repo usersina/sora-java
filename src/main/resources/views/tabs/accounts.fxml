@@ -13,8 +13,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.bankapp.controllers.AccountsTabController">
-	<children>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.AccountsTabController">
+   <children>
       <TableView fx:id="tvAccounts" layoutX="38.0" layoutY="164.0" prefHeight="319.0" prefWidth="816.0">
          <columns>
             <TableColumn fx:id="colNumber" prefWidth="199.0" styleClass="table-column-center" text="Account Id" />

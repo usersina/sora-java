@@ -1,8 +1,8 @@
-package application.bankapp.controllers;
+package application.sora.controllers;
 
 import java.io.IOException;
 
-import application.bankapp.FXApp;
+import application.sora.FXApp;
 import application.hibernate.services.PersonServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

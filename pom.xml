@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>application</groupId>
-	<artifactId>bankapp</artifactId>
+	<artifactId>sora</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>bankapp</name>
+	<name>sora</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

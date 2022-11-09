@@ -1,4 +1,4 @@
-package application.bankapp;
+package application.sora;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ public class FXApp extends Application {
 			// Set window style & title
 			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.setResizable(false);
-			primaryStage.setTitle("Bank Management");
+			primaryStage.setTitle("Sora");
 
 			// Create & show the scene
 			Scene scene = new Scene(root);
@@ -60,5 +60,4 @@ public class FXApp extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 }

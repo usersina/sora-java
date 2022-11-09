@@ -1,4 +1,4 @@
-package application.bankapp;
+package application.sora;
 
 // Entry Point
 public class App {

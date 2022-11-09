@@ -1,4 +1,4 @@
-package application.bankapp;
+package application.sora;
 
 import java.util.List;
 
