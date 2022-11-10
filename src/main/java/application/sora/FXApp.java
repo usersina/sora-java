@@ -64,7 +64,7 @@ public class FXApp extends Application {
 		currentStage.setHeight(height);
 	}
 
-	public static void main(String[] args) {
+	protected static void main(String[] args) {
 		launch(args);
 	}
 }

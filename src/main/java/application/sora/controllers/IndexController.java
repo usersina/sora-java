@@ -13,9 +13,9 @@ import javafx.scene.layout.AnchorPane;
 
 enum AppTabPage {
 	HOME,
-	FEATURED,
 	COLLECTION,
-	SETTINGS
+	SAVED,
+	PROFILE
 }
 
 /**
@@ -51,18 +51,16 @@ public class IndexController implements Initializable {
 	private Tab settings;
 
 	@FXML
-	private DashboardTabController dashboardTabController;
+	private HomeTabController homeTabController;
 
 	@FXML
-	private PersonsTabController personsTabController;
+	private CollectionTabController collectionTabController;
 
 	@FXML
-	private AccountsTabController accountsTabController;
-	// "Controller" is appended to fx:id under fx:include,
-	// therefore the above is not null
+	private SavedTabController savedTabController;
 
 	@FXML
-	private OperationsTabController operationsTabController;
+	private ProfileTabController profileTabController;
 
 	@FXML
 	void handleExit(MouseEvent event) {
@@ -71,36 +69,34 @@ public class IndexController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("Initializing index controller...");
+		System.out.printf("Intializing %s...%n", this.getClass().getSimpleName());
 		// Resize window to match window size
 		FXApp.resizeWindow((int) mainAp.getPrefWidth(), (int) mainAp.getPrefHeight());
 		setTabsListener();
 	}
 
 	// On Tab change, reload the appropriate data
-	void setTabsListener() {
+	private void setTabsListener() {
 		mainTp.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
 			String tabId = newTab.getId().toUpperCase();
 			System.out.println("Switching to tab: " + tabId);
 			switch (AppTabPage.valueOf(tabId)) {
 				case HOME:
-					// dashboardTabController.onTabOpen();
-					break;
-				case FEATURED:
-					// personsTabController.onTabOpen();
+					homeTabController.onTabOpen();
 					break;
 				case COLLECTION:
-					// accountsTabController.onTabOpen();
+					collectionTabController.onTabOpen();
 					break;
-				case SETTINGS:
-					// operationsTabController.onTabOpen();
+				case SAVED:
+					savedTabController.onTabOpen();
+					break;
+				case PROFILE:
+					profileTabController.onTabOpen();
 					break;
 				default:
 					System.err.println("Opening unhandled tab " + tabId);
 					break;
 			}
 		});
-
 	}
-
 }

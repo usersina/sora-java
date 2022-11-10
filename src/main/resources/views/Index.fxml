@@ -4,136 +4,240 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1045.0" styleClass="anchorContainer" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.IndexController">
+<AnchorPane fx:id="mainAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="1200.0" styleClass="anchorContainer" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.IndexController">
    <children>
-      <TabPane fx:id="mainTp" prefHeight="600.0" prefWidth="1045.0" side="LEFT" styleClass="tabContainer" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
-         <tabs>
-            <Tab fx:id="home" text="Home">
-               <content>
-                  <fx:include fx:id="dashboardTab" source="./tabs/dashboard.fxml" />
-               </content>
-               <graphic>
-                  <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+      <VBox prefWidth="1200.0">
+         <children>
+            <Pane prefWidth="1200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="190.0" prefWidth="160.0">
                      <children>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/home.png" />
+                              <Image url="@../images/books_background.jpg" />
                            </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="20.0" text="Home">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
+                        <Label text="John Doe">
+                           <font>
+                              <Font name="System Bold Italic" size="22.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Junior Artist">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1154.0" layoutY="14.0" onMouseClicked="#handleExit" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/x.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" layoutX="232.0" layoutY="126.0">
+                     <children>
+                        <Label text="Credit">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
                         </Label>
-                     </children>
-                     <padding>
-                        <Insets top="145.0" />
-                     </padding>
-                  </HBox>
-               </graphic>
-            </Tab>
-            <Tab fx:id="featured" text="Featured">
-               <content>
-                  <fx:include fx:id="personsTab" source="./tabs/persons.fxml" />
-               </content>
-               <graphic>
-                  <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                        <Label text="10.000">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/sparkles.png" />
+                              <Image url="@../images/books_background.jpg" />
                            </image>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="20.0" text="Featured">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="600.0" layoutY="126.0">
+                     <children>
+                        <Label text="Rank">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
                         </Label>
-                     </children>
-                     <padding>
-                        <Insets top="145.0" />
-                     </padding>
-                  </HBox>
-               </graphic>
-            </Tab>
-            <Tab fx:id="collection" text="Collection">
-               <content>
-                  <fx:include fx:id="accountsTab" source="./tabs/accounts.fxml" />
-               </content>
-               <graphic>
-                  <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                        <Label text="Gold">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true">
                            <image>
-                              <Image url="@../images/collection.png" />
+                              <Image url="@../images/books_background.jpg" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" prefHeight="20.0" text="Collection">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
                      </children>
-                     <padding>
-                        <Insets top="145.0" />
-                     </padding>
                   </HBox>
-               </graphic>
-            </Tab>
-            <Tab fx:id="settings" text="Settings">
-               <content>
-                  <fx:include fx:id="operationsTab" source="./tabs/operations.fxml" />
-               </content>
-               <graphic>
-                  <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/cog.png" />
-                           </image>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="20.0" text="Settings">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
+                  <TextField layoutX="971.0" layoutY="128.0" prefHeight="35.0" prefWidth="200.0" promptText="Search books or podcasts">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <padding>
-                        <Insets top="145.0" />
+                        <Insets left="5.0" right="30.0" />
                      </padding>
-                  </HBox>
-               </graphic>
-            </Tab>
-         </tabs>
-      </TabPane>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1008.0" layoutY="9.0" onMouseClicked="#handleExit" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/x.png" />
-         </image>
-      </ImageView>
+                  </TextField>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="1144.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/search.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="322.0" layoutY="29.0" text="SORA - An Online Smart Reader">
+                     <font>
+                        <Font name="System Italic" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <TabPane fx:id="mainTp" prefWidth="1200.0" side="LEFT" styleClass="tabContainer" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab fx:id="home" text="Home">
+                     <content>
+                        <fx:include fx:id="homeTab" source="./tabs/home.fxml" />
+                     </content>
+                     <graphic>
+                        <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/home.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" prefHeight="20.0" text="Home">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="145.0" />
+                           </padding>
+                        </HBox>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="collection" text="Collection">
+                     <content>
+                        <fx:include fx:id="collectionTab" source="./tabs/collection.fxml" />
+                     </content>
+                     <graphic>
+                        <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/sparkles.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label alignment="CENTER" prefHeight="20.0" text="Collection">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="145.0" />
+                           </padding>
+                        </HBox>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="saved" text="Saved">
+                     <content>
+                        <fx:include fx:id="savedTab" source="./tabs/saved.fxml" />
+                     </content>
+                     <graphic>
+                        <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/collection.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" prefHeight="20.0" text="Saved">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="145.0" />
+                           </padding>
+                        </HBox>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="profile" text="Profile">
+                     <content>
+                        <fx:include fx:id="profileTab" source="./tabs/profile.fxml" />
+                     </content>
+                     <graphic>
+                        <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/cog.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" prefHeight="20.0" text="Profile">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="145.0" />
+                           </padding>
+                        </HBox>
+                     </graphic>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
