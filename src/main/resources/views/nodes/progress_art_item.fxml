@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="184.0" prefWidth="126.0" styleClass="artwork-card" stylesheets="@../../css/nodes/progress_art_item.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="184.0" prefWidth="126.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutY="54.0" prefHeight="130.0" prefWidth="350.0" styleClass="artwork-card-body">
          <children>
@@ -46,4 +48,12 @@
          </image>
       </ImageView>
    </children>
+   <stylesheets>
+      <URL value="@../../css/nodes/progress_art_item.css" />
+      <URL value="@../../css/global.css" />
+   </stylesheets>
+   <styleClass>
+      <String fx:value="artwork-card" />
+      <String fx:value="cursor-pointer" />
+   </styleClass>
 </AnchorPane>

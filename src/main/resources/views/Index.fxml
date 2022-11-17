@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="1200.0" styleClass="anchorContainer" stylesheets="@../css/index.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.IndexController">
+<AnchorPane fx:id="mainAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="940.0" prefWidth="1200.0" styleClass="anchorContainer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.IndexController">
    <children>
       <VBox prefWidth="1200.0">
          <children>
@@ -240,4 +241,8 @@
          </children>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@../css/index.css" />
+      <URL value="@../css/global.css" />
+   </stylesheets>
 </AnchorPane>

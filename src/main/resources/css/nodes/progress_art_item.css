@@ -4,6 +4,7 @@
 
 .artwork-card-image {
   -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+  -fx-cursor: hand;
 }
 
 .artwork-card-body {
@@ -12,4 +13,5 @@
   -fx-border-width: 2;
   -fx-border-color: #d1d1d1;
   -fx-border-radius: 2em;
+  -fx-cursor: hand;
 }
