@@ -10,8 +10,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ModalWindow {
-    public static String AccountModal = "accountModal";
-    public static String PersonModal = "personModal";
+    public static String AccountModal = "account_modal";
+    public static String PersonModal = "person_modal";
 
     private FXMLLoader loader;
     private Stage modalStage;

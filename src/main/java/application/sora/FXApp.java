@@ -17,7 +17,7 @@ public class FXApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		currentStage = primaryStage;
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
 			// Move window on drag & drop
 			root.setOnMousePressed(pressEvent -> {
 				root.setOnMouseDragged(dragEvent -> {

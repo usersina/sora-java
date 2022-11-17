@@ -35,6 +35,6 @@ public class LoginController {
 	void handleSignIn(ActionEvent event) throws IOException {
 		// Initialize database in here to have an instance ready in index
 		System.out.println("Logging in!");
-		new FXApp().changeScene("/views/Index.fxml");
+		new FXApp().changeScene("/views/index.fxml");
 	}
 }

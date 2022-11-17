@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="235.0" prefWidth="160.0" stylesheets="@../../css/nodes/featured_art_item.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="155.0" fitWidth="106.0" pickOnBounds="true" styleClass="artwork-card-image">
+         <image>
+            <Image url="@../../images/books_background.jpg" />
+         </image>
+      </ImageView>
+      <Label text="Book Title" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="Jonathan Smake" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <Label opacity="0.6" styleClass="pill" text="Fantasy">
+         <padding>
+            <Insets bottom="1.0" left="3.0" right="3.0" top="1.0" />
+         </padding>
+         <VBox.margin>
+            <Insets top="2.0" />
+         </VBox.margin>
+      </Label>
+   </children>
+</VBox>

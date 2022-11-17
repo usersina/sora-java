@@ -1,4 +1,4 @@
-package application.sora.controllers;
+package application.sora.controllers.tabs;
 
 import java.net.URL;
 import java.util.ResourceBundle;

@@ -36,3 +36,7 @@
 .table-column-center {
   -fx-alignment: CENTER;
 }
+
+.cursor-pointer {
+  -fx-cursor: hand;
+}

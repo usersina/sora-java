@@ -4,6 +4,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.sora.FXApp;
+import application.sora.controllers.tabs.CollectionTabController;
+import application.sora.controllers.tabs.HomeTabController;
+import application.sora.controllers.tabs.ProfileTabController;
+import application.sora.controllers.tabs.SavedTabController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;

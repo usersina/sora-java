@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1040.0" styleClass="container" stylesheets="@../../css/tabs/profile.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.ProfileTabController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="750.0" prefWidth="1040.0" styleClass="container" stylesheets="@../../css/tabs/profile.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.sora.controllers.tabs.ProfileTabController">
    <children>
       <Label layoutX="50.0" layoutY="33.0" text="Profile content">
          <font>
