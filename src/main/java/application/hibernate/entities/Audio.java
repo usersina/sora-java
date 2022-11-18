@@ -3,10 +3,19 @@ package application.hibernate.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * Either an AudioBook or a Podcast depending on the book reference
  */
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Audio extends Artwork {
     @Column
     private String description;
