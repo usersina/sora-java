@@ -1,11 +1,9 @@
-<!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/javafx_bank?createDatabaseIfNotExist=true&amp;useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/sora_java?useSSL=false&amp;serverTimezone=UTC</property>
         <property name="connection.username">root</property>
         <property name="connection.password"></property>
         <!-- JDBC connection pool settings ... using built-in test pool -->
@@ -16,15 +14,19 @@
         <property name="show_sql">true</property>
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
-        <!-- Drop and re-create the database schema on startup (create-drop) -->
-        <property name="hbm2ddl.auto">update</property>
+        <!-- Drop and re-create the database schema on startup (create-drop-update) -->
+        <property name="hbm2ddl.auto">create</property>
         <!-- dbcp connection pool configuration -->
         <property name="hibernate.dbcp.initialSize">5</property>
         <property name="hibernate.dbcp.maxTotal">20</property>
         <property name="hibernate.dbcp.maxIdle">10</property>
         <property name="hibernate.dbcp.minIdle">5</property>
         <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-        <mapping class="application.hibernate.entities.Person" />
-        <mapping class="application.hibernate.entities.Account" />
+        <mapping class="application.hibernate.entities.User" />
+        <mapping class="application.hibernate.entities.Reviewer" />
+        <mapping class="application.hibernate.entities.Book" />
+        <mapping class="application.hibernate.entities.Audio" />
+        <mapping class="application.hibernate.entities.Genre" />
+        <mapping class="application.hibernate.entities.Designation" />
     </session-factory>
 </hibernate-configuration>

@@ -2,6 +2,9 @@ package application.sora.controllers;
 
 import java.io.IOException;
 
+import org.hibernate.Session;
+
+import application.hibernate.util.HibernateUtil;
 import application.sora.FXApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +37,8 @@ public class LoginController {
 	@FXML
 	void handleSignIn(ActionEvent event) throws IOException {
 		// Initialize database in here to have an instance ready in index
-		System.out.println("Logging in!");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		System.out.println("Logging in!" + session);
 		new FXApp().changeScene("/views/index.fxml");
 	}
 }
