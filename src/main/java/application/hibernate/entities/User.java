@@ -74,4 +74,25 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<UserCollection> userCollections;
+
+    // --------- Constructors --------- //
+    public User(String firstName, String lastName, String email, String username, String password, double credit) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.credit = credit;
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password, double credit,
+            Designation designation) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.credit = credit;
+        this.designation = designation;
+    }
 }

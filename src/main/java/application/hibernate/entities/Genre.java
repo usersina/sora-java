@@ -38,4 +38,10 @@ public class Genre {
 
     @ManyToMany(mappedBy = "genres")
     private List<Book> books;
+
+    // --------- Constructors --------- //
+    public Genre(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

@@ -34,7 +34,7 @@ public abstract class Artwork {
     private double cost;
 
     @Column
-    private String filePath;
+    private String fileUrl;
 
     @Column(nullable = true)
     private Date publishedAt;
@@ -51,4 +51,17 @@ public abstract class Artwork {
 
     @OneToMany(mappedBy = "artwork")
     private List<ArtworkReview> artworkReviews;
+
+    // --------- Constructors --------- //
+
+    public Artwork(double cost, String fileUrl) {
+        this.cost = cost;
+        this.fileUrl = fileUrl;
+    }
+
+    public Artwork(double cost, String fileUrl, User user) {
+        this.cost = cost;
+        this.fileUrl = fileUrl;
+        this.user = user;
+    }
 }

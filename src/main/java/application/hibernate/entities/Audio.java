@@ -22,7 +22,7 @@ public class Audio extends Artwork {
     private String description;
 
     /**
-     * Duration of the audio in milliseconds
+     * Duration of the audio in seconds
      */
     @Column
     private int duration;
@@ -30,4 +30,36 @@ public class Audio extends Artwork {
     // --------- Relations --------- //
     @OneToOne(optional = true)
     private Book book;
+
+    // --------- Constructors --------- //
+
+    /**
+     * AudioBook constructor
+     * 
+     * @param cost
+     * @param fileUrl
+     * @param description
+     * @param duration
+     * @param book
+     */
+    public Audio(double cost, String fileUrl, String description, int duration, Book book) {
+        super(cost, fileUrl);
+        this.description = description;
+        this.duration = duration;
+        this.book = book;
+    }
+
+    /**
+     * Podcast constructor
+     * 
+     * @param cost
+     * @param fileUrl
+     * @param description
+     * @param duration
+     */
+    public Audio(double cost, String fileUrl, String description, int duration) {
+        super(cost, fileUrl);
+        this.description = description;
+        this.duration = duration;
+    }
 }

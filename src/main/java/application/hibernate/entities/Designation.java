@@ -37,4 +37,11 @@ public class Designation {
     // --------- Relations --------- //
     @OneToMany(mappedBy = "designation")
     private List<User> users;
+
+    // --------- Constructors --------- //
+    public Designation(String name, String description, float bonusPerc) {
+        this.name = name;
+        this.description = description;
+        this.bonusPerc = bonusPerc;
+    }
 }

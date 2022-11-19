@@ -25,4 +25,15 @@ public class Reviewer extends User {
     // --------- Relations --------- /
     @OneToMany(mappedBy = "reviewer")
     private List<ArtworkReview> artworkReviews;
+
+    // --------- Constructors --------- //
+    public Reviewer(String firstName, String lastName, String email, String username, String password, double credit) {
+        super(firstName, lastName, email, username, password, credit);
+    }
+
+    public Reviewer(String firstName, String lastName, String email, String username, String password, double credit,
+            Date verifiedAt) {
+        super(firstName, lastName, email, username, password, credit);
+        this.verifiedAt = verifiedAt;
+    }
 }
