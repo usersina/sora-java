@@ -1,20 +1,21 @@
 package application.sora.controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import org.hibernate.Session;
-
-import application.hibernate.util.HibernateUtil;
+import application.hibernate.util.DatabaseSeeder;
 import application.sora.FXApp;
 import application.sora.constants.FXMLConstants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class LoginController {
+public class LoginController implements Initializable {
 	@FXML
 	private TextField tfEmail;
 
@@ -24,22 +25,27 @@ public class LoginController {
 	@FXML
 	private Button btnSignIn;
 
-	@FXML
-	void handleExit(MouseEvent event) {
-		System.exit(0);
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		DatabaseSeeder databaseSeeder = new DatabaseSeeder();
+		databaseSeeder.populateDatabase();
 	}
 
 	/**
-	 * **TODO:** Implement an actual sign in
+	 * Verify whether the inputs are valid and redirect the user to the Index
+	 * scene.
 	 * 
 	 * @param event
 	 * @throws IOException
 	 */
 	@FXML
 	void handleSignIn(ActionEvent event) throws IOException {
-		// Initialize database in here to have an instance ready in index
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		System.out.println("Logging in!" + session);
+		// TODO: Pass which user was Signed in
 		new FXApp().changeScene(FXMLConstants.INDEX);
+	}
+
+	@FXML
+	void handleExit(MouseEvent event) {
+		System.exit(0);
 	}
 }

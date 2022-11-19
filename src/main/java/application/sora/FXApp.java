@@ -5,8 +5,10 @@ import java.io.IOException;
 import application.sora.constants.FXMLConstants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -63,6 +65,16 @@ public class FXApp extends Application {
 	public static void resizeWindow(int width, int height) {
 		currentStage.setWidth(width);
 		currentStage.setHeight(height);
+	}
+
+	/**
+	 * Center the current stage on the current display screen. This is useful
+	 * right after calling `resizeWindow` or `changeScene`.
+	 */
+	public static void centerStage() {
+		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+		currentStage.setX((primScreenBounds.getWidth() - currentStage.getWidth()) / 2);
+		currentStage.setY((primScreenBounds.getHeight() - currentStage.getHeight()) / 2);
 	}
 
 	protected static void main(String[] args) {

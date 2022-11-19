@@ -74,12 +74,18 @@ public class IndexController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.printf("Intializing %s...%n", this.getClass().getSimpleName());
-		// Resize window to match window size
+
+		// Resize stage to match current size and center stage to center
 		FXApp.resizeWindow((int) mainAp.getPrefWidth(), (int) mainAp.getPrefHeight());
+		FXApp.centerStage();
+
 		setTabsListener();
 	}
 
-	// On Tab change, reload the appropriate data
+	/**
+	 * This makes each tab controller aware that it was opened by calling
+	 * the `onTabOpen` function depending on the opened tab.
+	 */
 	private void setTabsListener() {
 		mainTp.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
 			String tabId = newTab.getId().toUpperCase();

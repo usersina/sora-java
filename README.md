@@ -10,5 +10,6 @@ This is a university project that might grow to be something more than that.
 
 ### Resources
 
-- https://www.baeldung.com/jpa-many-to-many
+- [JPA Relations (e.g. many to many)](https://www.baeldung.com/jpa-many-to-many)
 - https://medium.com/swlh/code-first-database-design-and-development-using-jpa-hibernate-flway-fastnate-and-spring-boot-3ede35b403a6
+- [UI and threading](https://stackoverflow.com/questions/33394058/how-can-i-show-a-loading-gui-in-javafx)
