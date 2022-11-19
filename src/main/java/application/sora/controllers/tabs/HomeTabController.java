@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.helpers.nodes.interfaces.ITabPage;
+import application.sora.constants.FXMLConstants;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -40,7 +41,7 @@ public class HomeTabController implements Initializable, ITabPage {
     private void populateProgressList() throws IOException {
         Node[] nodes = new Node[10];
         for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = FXMLLoader.load(getClass().getResource("/views/nodes/progress_art_item.fxml"));
+            nodes[i] = FXMLLoader.load(getClass().getResource(FXMLConstants.PROGRESS_ART_ITEM));
         }
         progressHBox.getChildren().addAll(nodes);
     }
@@ -48,7 +49,7 @@ public class HomeTabController implements Initializable, ITabPage {
     private void populateFeaturedList() throws IOException {
         Node[] nodes = new Node[10];
         for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = FXMLLoader.load(getClass().getResource("/views/nodes/featured_art_item.fxml"));
+            nodes[i] = FXMLLoader.load(getClass().getResource(FXMLConstants.FEATURED_ART_ITEM));
         }
         featuredHBox.getChildren().addAll(nodes);
     }

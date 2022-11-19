@@ -2,6 +2,7 @@ package application.sora;
 
 import java.io.IOException;
 
+import application.sora.constants.FXMLConstants;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,7 @@ public class FXApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		currentStage = primaryStage;
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/views/login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource(FXMLConstants.LOGIN));
 			// Move window on drag & drop
 			root.setOnMousePressed(pressEvent -> {
 				root.setOnMouseDragged(dragEvent -> {

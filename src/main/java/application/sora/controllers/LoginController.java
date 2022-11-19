@@ -6,6 +6,7 @@ import org.hibernate.Session;
 
 import application.hibernate.util.HibernateUtil;
 import application.sora.FXApp;
+import application.sora.constants.FXMLConstants;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,6 +40,6 @@ public class LoginController {
 		// Initialize database in here to have an instance ready in index
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		System.out.println("Logging in!" + session);
-		new FXApp().changeScene("/views/index.fxml");
+		new FXApp().changeScene(FXMLConstants.INDEX);
 	}
 }
