@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import application.hibernate.entities.composite.ArtworkRating;
@@ -61,6 +62,9 @@ public class User {
     @ManyToMany
     @JoinTable(name = "interests", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
+
+    @ManyToOne
+    private Designation designation;
 
     @OneToMany(mappedBy = "user"/* ,fetch = FetchType.EAGER, cascade = CascadeType.ALL */)
     private List<Artwork> artworks;
