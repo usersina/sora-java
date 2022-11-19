@@ -28,5 +28,8 @@
         <mapping class="application.hibernate.entities.Audio" />
         <mapping class="application.hibernate.entities.Genre" />
         <mapping class="application.hibernate.entities.Designation" />
+        <mapping class="application.hibernate.entities.composite.UserCollection" />
+        <mapping class="application.hibernate.entities.composite.ArtworkReview" />
+        <mapping class="application.hibernate.entities.composite.ArtworkRating" />
     </session-factory>
 </hibernate-configuration>

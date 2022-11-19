@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import application.hibernate.entities.composite.ArtworkRating;
+import application.hibernate.entities.composite.UserCollection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,11 +58,16 @@ public class User {
     private String country;
 
     // --------- Relations --------- //
-
     @ManyToMany
     @JoinTable(name = "interests", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
 
     @OneToMany(mappedBy = "user"/* ,fetch = FetchType.EAGER, cascade = CascadeType.ALL */)
     private List<Artwork> artworks;
+
+    @OneToMany(mappedBy = "user")
+    private List<ArtworkRating> artworkRatings;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserCollection> userCollections;
 }
