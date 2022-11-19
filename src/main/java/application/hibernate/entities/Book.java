@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,8 @@ public class Book extends Artwork {
     private int pagesNumber;
 
     // --------- Relations --------- //
+    @OneToOne(optional = true)
+    private Audio audio;
 
     @ManyToMany
     @JoinTable(name = "book_genre", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))

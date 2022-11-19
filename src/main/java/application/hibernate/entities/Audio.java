@@ -2,6 +2,7 @@ package application.hibernate.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +28,6 @@ public class Audio extends Artwork {
     private int duration;
 
     // --------- Relations --------- //
+    @OneToOne(optional = true)
+    private Book book;
 }
