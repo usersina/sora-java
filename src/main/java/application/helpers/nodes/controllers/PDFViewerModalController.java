@@ -19,6 +19,9 @@ public class PDFViewerModalController implements Initializable {
         engine = webView.getEngine();
         System.out.println("Loading the PDF Viewer...");
         engine.load("https://www.google.com");
+        // Run javascript code to load the PDF Viewer with a file instead of google
+        // @see https://github.com/mozilla/pdf.js/blob/master/examples/node/getinfo.js
         // engine.load("https://www.africau.edu/images/default/sample.pdf");
+        // engine.executeScript("window.location = https://www.google.com");
     }
 }

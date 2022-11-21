@@ -59,6 +59,10 @@ public class LoginController implements Initializable {
 		}
 		Globals.setLoggedUserId(user.getId());
 		new FXApp().changeScene(FXMLConstants.INDEX);
+
+		// DEVONLY: Directly redirect to index
+		// Globals.setLoggedUserId(1L);
+		// new FXApp().changeScene(FXMLConstants.INDEX);
 	}
 
 	@FXML
