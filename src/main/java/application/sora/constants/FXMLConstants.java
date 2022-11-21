@@ -16,4 +16,6 @@ public final class FXMLConstants {
 
     public static final String PROGRESS_ART_ITEM = VIEWS_DIR + "/nodes/progress_art_item.fxml";
     public static final String FEATURED_ART_ITEM = VIEWS_DIR + "/nodes/featured_art_item.fxml";
+
+    public static final String PDF_VIEWER_MODAL = VIEWS_DIR + "/modals/pdf_viewer_modal.fxml";
 }

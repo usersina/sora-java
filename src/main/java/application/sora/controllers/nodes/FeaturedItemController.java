@@ -3,13 +3,16 @@ package application.sora.controllers.nodes;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.helpers.nodes.ModalWindow;
 import application.hibernate.entities.Artwork;
 import application.hibernate.entities.Audio;
 import application.hibernate.entities.Book;
+import application.sora.constants.FXMLConstants;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class FeaturedItemController implements Initializable {
     private Artwork artwork;
@@ -37,5 +40,11 @@ public class FeaturedItemController implements Initializable {
         this.titleLbl.setText(artwork.getTitle());
         // If book, then set genre to first one (Bad way to do it but time constraints)
         this.genreLbl.setText(artwork instanceof Audio ? "Audio" : ((Book) artwork).getGenres().get(0).getName());
+    }
+
+    @FXML
+    void onClick(MouseEvent event) {
+        ModalWindow pdfViewerModalWindow = new ModalWindow(FXMLConstants.PDF_VIEWER_MODAL, "Viewing Dummy Placeholder");
+        pdfViewerModalWindow.showModalAndWait();
     }
 }
