@@ -1,9 +1,11 @@
 package application.sora.controllers;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.sora.FXApp;
+import application.sora.constants.Globals;
 import application.sora.controllers.tabs.CollectionTabController;
 import application.sora.controllers.tabs.HomeTabController;
 import application.sora.controllers.tabs.ProfileTabController;
@@ -74,6 +76,11 @@ public class IndexController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.printf("Intializing %s...%n", this.getClass().getSimpleName());
+
+		// Sanity Check, if no userId is present crash the app
+		if (Optional.of(Globals.getLoggedUserId()).isEmpty()) {
+			throw new RuntimeException("Cannot Load the Index window without a valid userId");
+		}
 
 		// Resize stage to match current size and center stage to center
 		FXApp.resizeWindow((int) mainAp.getPrefWidth(), (int) mainAp.getPrefHeight());

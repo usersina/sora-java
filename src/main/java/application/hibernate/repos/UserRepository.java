@@ -35,4 +35,22 @@ public class UserRepository {
         }
         return users;
     }
+
+    public User findUserByEmailOrUsername(String emailOrUsername) {
+        Transaction transaction = null;
+        User user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            List<User> matches = session
+                    .createQuery("FROM User WHERE email = :emailOrUsername OR username = :emailOrUsername", User.class)
+                    .setParameter("emailOrUsername", emailOrUsername).list();
+            if (!matches.isEmpty())
+                user = matches.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (transaction != null)
+                transaction.rollback();
+        }
+        return user;
+    }
 }

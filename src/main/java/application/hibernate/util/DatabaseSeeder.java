@@ -74,8 +74,8 @@ public class DatabaseSeeder {
 		designationService.saveDesignation(new Designation("Fan", "You never published any content", 0));
 		designationService.saveDesignation(new Designation("Novice", "You published very little content", 2));
 		designationService.saveDesignation(new Designation("Amateur", "You published some content", 5));
-		Designation novelist = designationService
-				.saveDesignation(new Designation("Novelist", "You published enough books to be called a novelist", 20));
+		Designation novelist = designationService.saveDesignation(
+				new Designation("Novelist", "You published enough books to be called a novelist", 20));
 		designationService.saveDesignation(new Designation("Quill-Driver", "You published a great deal of book", 30));
 
 		// Create genres
@@ -126,7 +126,6 @@ public class DatabaseSeeder {
 
 		// "Barrel Reader": Add book to user-collections
 		userCollectionService.saveUserCollection(new UserCollection(new Date(), barrelUser, timeTravelBook));
-		System.out.println(userCollectionService.getAllUserCollections());
 
 		// "Barrel Reader": Create review for "Time Travel for Dummies"
 		artworkRatingService.saveArtworkRating(

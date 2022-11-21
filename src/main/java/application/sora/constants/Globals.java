@@ -5,10 +5,10 @@ package application.sora.constants;
  */
 public class Globals {
     /**
-     * The ID of the currently logged in user. User IDs are expected to start
-     * at 1 and NOT 0.
+     * The ID of the currently logged in user. This is set to default initially.
+     * Also note that User IDs are expected to start at 1.
      */
-    private static Long LOGGED_USER_ID = 0L;
+    private static Long LOGGED_USER_ID;
 
     public static void setLoggedUserId(Long userId) {
         LOGGED_USER_ID = userId;
