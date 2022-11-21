@@ -12,12 +12,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "artwork_rating")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class ArtworkRating {
     @EmbeddedId
     private ArtworkRatingKey id;
@@ -36,4 +38,13 @@ public class ArtworkRating {
     @MapsId("artworkId")
     @JoinColumn(name = "artwork_id")
     Artwork artwork;
+
+    // --------- Constructors --------- //
+    public ArtworkRating(int score, String content, User user, Artwork artwork) {
+        this.id = new ArtworkRatingKey(user.getId(), artwork.getId());
+        this.score = score;
+        this.content = content;
+        this.user = user;
+        this.artwork = artwork;
+    }
 }
