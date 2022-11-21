@@ -95,4 +95,15 @@ public class User {
         this.credit = credit;
         this.designation = designation;
     }
+
+    public User(String firstName, String lastName, String email, String username, String password, double credit,
+            List<Genre> genres) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.credit = credit;
+        this.genres = genres;
+    }
 }

@@ -36,4 +36,10 @@ public class Reviewer extends User {
         super(firstName, lastName, email, username, password, credit);
         this.verifiedAt = verifiedAt;
     }
+
+    public Reviewer(String firstName, String lastName, String email, String username, String password, double credit,
+            Date verifiedAt, List<Genre> genres) {
+        super(firstName, lastName, email, username, password, credit, genres);
+        this.verifiedAt = verifiedAt;
+    }
 }

@@ -79,28 +79,31 @@ public class DatabaseSeeder {
 		designationService.saveDesignation(new Designation("Quill-Driver", "You published a great deal of book", 30));
 
 		// Create genres
-		genreService.saveGenre(new Genre("Fantasy", "Supernatural and out of this world"));
-		genreService.saveGenre(new Genre("Romance", "It's all about relations"));
-		Genre science = genreService
+		Genre fantasyGenre = genreService.saveGenre(new Genre("Fantasy", "Supernatural and out of this world"));
+		Genre romanceGenre = genreService.saveGenre(new Genre("Romance", "It's all about relations"));
+		Genre scienceGenre = genreService
 				.saveGenre(new Genre("Science", "Related to the collective knowledge we share as humans"));
-		genreService.saveGenre(new Genre("Sci-fi", "Set out in the supposedly not so distance future"));
+		Genre scifiGenre = genreService
+				.saveGenre(new Genre("Sci-fi", "Set out in the supposedly not so distance future"));
 
 		// Create users
 		User johnUser = userService
 				.saveUser(new User("John", "Writer", "john.writer@gmail.com", "jwriter", "password", 340, novelist));
 		User barrelUser = userService
-				.saveUser(new User("Barrel", "Reader", "barrel.reader@gmail.com", "breader", "password", 120));
+				.saveUser(new User("Barrel", "Reader", "barrel.reader@gmail.com", "breader", "password", 120,
+						Arrays.asList(scienceGenre, romanceGenre, scienceGenre)));
 
 		// Create reviewer
 		Reviewer kyoumaReviewer = reviewerService.saveReviewer(
-				new Reviewer("Kyouma", "Viewer", "kyouma.viewer@gmail.com", "hououin", "password", 0, new Date()));
+				new Reviewer("Kyouma", "Viewer", "kyouma.viewer@gmail.com", "hououin", "password", 0, new Date(),
+						Arrays.asList(scienceGenre, fantasyGenre, scifiGenre)));
 
 		// Create two books for John
 		Book timeTravelBook = bookService.saveBook(
 				new Book(180, "https://some-site-or-service/time-travel-for-dummies.pdf", johnUser,
 						"Time Travel for Dummies",
 						"The all-in one Time Travel book that even toddlers should be able to understand",
-						250, Arrays.asList(science)),
+						250, Arrays.asList(scienceGenre)),
 				johnUser.getId());
 
 		// Add audio for the first book
@@ -115,16 +118,6 @@ public class DatabaseSeeder {
 				new Audio(25, "https://path-to-some-mp3-server/discussing-time-traver-for-dummies.mp3",
 						"Kyouma, your host will discuss Time Travel for Dummies", 1200),
 				kyoumaReviewer.getId());
-
-		// - "Kyouma Viewer"
-		// . Create Interest
-		// . Review "Time Travel for Dummies"
-		// - "Barrel Reader"
-		// . Add "Time Travel for Dummies" to user-collection
-		// . Create review for "Time Travel for Dummies"
-
-		// Create interests and reviews for "Kyouma Viewer"
-		// "Kyouma Viewer" create interests
 
 		// "Kyouma Viewer" create review for "Time Travel for Dummies"
 		artworkReviewService.saveArtworkReview(
