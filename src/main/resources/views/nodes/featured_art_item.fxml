@@ -10,12 +10,12 @@
 
 <VBox alignment="CENTER" prefHeight="235.0" prefWidth="160.0" styleClass="cursor-pointer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="155.0" fitWidth="106.0" pickOnBounds="true" styleClass="artwork-card-image">
+      <ImageView fx:id="coverImg" fitHeight="155.0" fitWidth="106.0" pickOnBounds="true" styleClass="artwork-card-image">
          <image>
             <Image url="@../../images/books_background.jpg" />
          </image>
       </ImageView>
-      <Label text="Book Title" textAlignment="CENTER">
+      <Label fx:id="titleLbl" text="Book Title" textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="22.0" />
          </font>
@@ -23,7 +23,7 @@
             <Insets top="5.0" />
          </VBox.margin>
       </Label>
-      <Label text="Jonathan Smake" textAlignment="CENTER">
+      <Label fx:id="authorLbl" text="Jonathan Smake" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -31,7 +31,7 @@
             <Insets />
          </VBox.margin>
       </Label>
-      <Label opacity="0.6" styleClass="pill" text="Fantasy">
+      <Label fx:id="genreLbl" opacity="0.6" styleClass="pill" text="Fantasy">
          <padding>
             <Insets bottom="1.0" left="3.0" right="3.0" top="1.0" />
          </padding>

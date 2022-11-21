@@ -102,13 +102,15 @@ public class DatabaseSeeder {
 
 		// Create two books for John
 		Book timeTravelBook = bookService.saveBook(
-				new Book(180, "https://some-site-or-service/time-travel-for-dummies.pdf", johnUser,
+				new Book(180, "https://some-site-or-service/time-travel-for-dummies.pdf",
+						"https://some-covers/image.png", johnUser,
 						"Time Travel for Dummies",
 						"The all-in one Time Travel book that even toddlers should be able to understand",
 						250, Arrays.asList(scienceGenre)),
 				johnUser.getId());
 		bookService.saveBook(
-				new Book(260, "https://some-site-or-service/lord-of-donus.pdf", johnUser,
+				new Book(260, "https://some-site-or-service/lord-of-the-donuts.pdf",
+						"https://some-covers/image.png", johnUser,
 						"Lord of the Donuts",
 						"In the magical world of Tunod, a strange curse is turning criminals into donuts",
 						500, Arrays.asList(fantasyGenre)),
@@ -117,6 +119,7 @@ public class DatabaseSeeder {
 		// Add audio for the first book
 		audioService.saveAudioBook(
 				new Audio(50, "https://path-to-some-mp3-server/time-travel-for-dummies.mp3",
+						"https://some-covers/image.png",
 						"Reading out the book for you to make time travel even simpler",
 						22500, timeTravelBook),
 				johnUser.getId(), timeTravelBook.getId());
@@ -124,6 +127,7 @@ public class DatabaseSeeder {
 		// Add a podcast to the reviewer
 		audioService.savePodcast(
 				new Audio(25, "https://path-to-some-mp3-server/discussing-time-traver-for-dummies.mp3",
+						"https://some-covers/image.png",
 						"Kyouma, your host will discuss Time Travel for Dummies", 1200),
 				kyoumaReviewer.getId());
 

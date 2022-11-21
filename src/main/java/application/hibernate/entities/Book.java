@@ -35,24 +35,25 @@ public class Book extends Artwork {
 
     // --------- Constructors --------- //
 
-    public Book(double cost, String filePath, String title, String synopsis, int pagesNumber) {
-        super(cost, filePath);
+    public Book(double cost, String fileUrl, String coverImg, String title, String synopsis, int pagesNumber) {
+        super(cost, fileUrl, coverImg);
         this.title = title;
         this.synopsis = synopsis;
         this.pagesNumber = pagesNumber;
     }
 
-    public Book(double cost, String filePath, String title, String synopsis, int pagesNumber, List<Genre> genres) {
-        super(cost, filePath);
+    public Book(double cost, String fileUrl, String coverImg, String title, String synopsis, int pagesNumber,
+            List<Genre> genres) {
+        super(cost, fileUrl, coverImg);
         this.title = title;
         this.synopsis = synopsis;
         this.pagesNumber = pagesNumber;
         this.genres = genres;
     }
 
-    public Book(double cost, String fileUrl, User user, String title, String synopsis, int pagesNumber,
+    public Book(double cost, String fileUrl, String coverImg, User user, String title, String synopsis, int pagesNumber,
             List<Genre> genres) {
-        super(cost, fileUrl, user);
+        super(cost, fileUrl, coverImg, user);
         this.title = title;
         this.synopsis = synopsis;
         this.pagesNumber = pagesNumber;
