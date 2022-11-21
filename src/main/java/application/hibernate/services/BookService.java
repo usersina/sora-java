@@ -8,4 +8,6 @@ public interface BookService {
     Book saveBook(Book book, Long userId);
 
     List<Book> getAllBooks();
+
+    Book update(Book book);
 }

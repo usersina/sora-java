@@ -42,8 +42,9 @@ public class Audio extends Artwork {
      * @param duration
      * @param book
      */
-    public Audio(double cost, String fileUrl, String coverImg, String description, int duration, Book book) {
-        super(cost, fileUrl, coverImg);
+    public Audio(String title, double cost, String fileUrl, String coverImg, String description, int duration,
+            Book book) {
+        super(title, cost, fileUrl, coverImg);
         this.description = description;
         this.duration = duration;
         this.book = book;
@@ -57,8 +58,8 @@ public class Audio extends Artwork {
      * @param description
      * @param duration
      */
-    public Audio(double cost, String fileUrl, String coverImg, String description, int duration) {
-        super(cost, fileUrl, coverImg);
+    public Audio(String title, double cost, String fileUrl, String coverImg, String description, int duration) {
+        super(title, cost, fileUrl, coverImg);
         this.description = description;
         this.duration = duration;
     }

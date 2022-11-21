@@ -32,7 +32,6 @@ public class Genre {
     private String description;
 
     // --------- Relations --------- //
-
     @ManyToMany(mappedBy = "genres")
     private List<User> users;
 

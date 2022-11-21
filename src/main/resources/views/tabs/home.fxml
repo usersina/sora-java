@@ -15,7 +15,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="50.0" layoutY="86.0" prefHeight="230.0" prefWidth="950.0">
+      <ScrollPane layoutX="50.0" layoutY="86.0" prefHeight="230.0" prefWidth="950.0" styleClass="scrollpane">
          <content>
             <AnchorPane minHeight="0.0" minWidth="950.0" prefHeight="215.0" styleClass="artwork-cards-container">
                <children>
@@ -38,7 +38,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="50.0" layoutY="405.0" prefHeight="300.0" prefWidth="950.0">
+      <ScrollPane layoutX="50.0" layoutY="405.0" prefHeight="300.0" prefWidth="950.0" styleClass="scrollpane">
          <content>
             <AnchorPane minHeight="0.0" minWidth="950.0" prefHeight="285.0" styleClass="artwork-cards-container">
                <children>

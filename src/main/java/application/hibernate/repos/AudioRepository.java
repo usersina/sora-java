@@ -42,4 +42,17 @@ public class AudioRepository {
         }
         return audios;
     }
+
+    public Audio update(Audio book) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(book);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null)
+                transaction.rollback();
+        }
+        return book;
+    }
 }

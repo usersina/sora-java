@@ -5,3 +5,7 @@
 .artwork-cards-container {
   -fx-background-color: #eeeeee;
 }
+
+.scrollpane {
+  -fx-background-color: transparent;
+}

@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="235.0" prefWidth="160.0" styleClass="cursor-pointer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="235.0" prefWidth="250.0" styleClass="cursor-pointer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="coverImg" fitHeight="155.0" fitWidth="106.0" pickOnBounds="true" styleClass="artwork-card-image">
          <image>
             <Image url="@../../images/books_background.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="titleLbl" text="Book Title" textAlignment="CENTER">
+      <Label fx:id="titleLbl" text="Time Travel for Dummies" textAlignment="CENTER">
          <font>
-            <Font name="System Bold Italic" size="22.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
          <VBox.margin>
             <Insets top="5.0" />

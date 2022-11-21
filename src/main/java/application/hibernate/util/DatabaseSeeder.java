@@ -102,39 +102,48 @@ public class DatabaseSeeder {
 
 		// Create two books for John
 		Book timeTravelBook = bookService.saveBook(
-				new Book(180, "https://some-site-or-service/time-travel-for-dummies.pdf",
+				new Book("Time Travel for Dummies", 180,
+						"https://some-site-or-service/time-travel-for-dummies.pdf",
 						"https://some-covers/image.png", johnUser,
-						"Time Travel for Dummies",
 						"The all-in one Time Travel book that even toddlers should be able to understand",
 						250, Arrays.asList(scienceGenre)),
 				johnUser.getId());
 		bookService.saveBook(
-				new Book(260, "https://some-site-or-service/lord-of-the-donuts.pdf",
+				new Book("Lord of the Donuts", 260,
+						"https://some-site-or-service/lord-of-the-donuts.pdf",
 						"https://some-covers/image.png", johnUser,
-						"Lord of the Donuts",
 						"In the magical world of Tunod, a strange curse is turning criminals into donuts",
 						500, Arrays.asList(fantasyGenre)),
 				johnUser.getId());
 
 		// Add audio for the first book
-		audioService.saveAudioBook(
-				new Audio(50, "https://path-to-some-mp3-server/time-travel-for-dummies.mp3",
+		Audio timetravelAudio = audioService.saveAudioBook(
+				new Audio("Time Travel - Audio", 50, "https://path-to-some-mp3-server/time-travel-for-dummies.mp3",
 						"https://some-covers/image.png",
 						"Reading out the book for you to make time travel even simpler",
 						22500, timeTravelBook),
 				johnUser.getId(), timeTravelBook.getId());
+		timetravelAudio.setPublishedAt(new Date());
+		audioService.update(timetravelAudio);
 
 		// Add a podcast to the reviewer
-		audioService.savePodcast(
-				new Audio(25, "https://path-to-some-mp3-server/discussing-time-traver-for-dummies.mp3",
+		Audio timetravelPodcast = audioService.savePodcast(
+				new Audio("Time Travel - Podcast", 25,
+						"https://path-to-some-mp3-server/discussing-time-traver-for-dummies.mp3",
 						"https://some-covers/image.png",
 						"Kyouma, your host will discuss Time Travel for Dummies", 1200),
 				kyoumaReviewer.getId());
+		timetravelPodcast.setPublishedAt(new Date());
+		audioService.update(timetravelPodcast);
 
 		// "Kyouma Viewer" create review for "Time Travel for Dummies"
 		artworkReviewService.saveArtworkReview(
 				new ArtworkReview("This book is GOLDEN. Published!",
-						"Hear my new Podcast about it if you're interested!", true, kyoumaReviewer, timeTravelBook));
+						"Hear my new Podcast about it if you're interested!",
+						true, kyoumaReviewer, timeTravelBook));
+		// Actually publish the book
+		timeTravelBook.setPublishedAt(new Date());
+		bookService.update(timeTravelBook);
 
 		// "Barrel Reader": Add book to user-collections
 		userCollectionService.saveUserCollection(new UserCollection(new Date(), barrelUser, timeTravelBook));

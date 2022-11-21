@@ -5,49 +5,60 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import application.hibernate.entities.Book;
-import application.hibernate.entities.User;
+import application.hibernate.entities.Artwork;
 import application.hibernate.util.HibernateUtil;
 
-public class BookRepository {
-    public Book save(Book book, Long userId) {
+/**
+ * This is only here to fetch all artworks in one go.
+ */
+public class ArtworkRepository {
+    public List<Artwork> findAll() {
         Transaction transaction = null;
+        List<Artwork> artworks = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            book.setUser(session.get(User.class, userId));
-            session.saveOrUpdate(book);
+            artworks = session.createQuery("from Artwork", Artwork.class).list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null)
                 transaction.rollback();
         }
-        return book;
+        return artworks;
     }
 
-    public List<Book> findAll() {
+    public List<Artwork> findAllPublished() {
         Transaction transaction = null;
-        List<Book> books = null;
+        List<Artwork> artworks = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            books = session.createQuery("from Book", Book.class).list();
+            artworks = session.createQuery("from Artwork WHERE publishedAt IS NOT NULL", Artwork.class).list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null)
                 transaction.rollback();
         }
-        return books;
+        return artworks;
     }
 
-    public Book update(Book book) {
+    /**
+     * Find the last {@code limit} published books.
+     * 
+     * @param limit
+     * @return
+     */
+    public List<Artwork> findRecentlyPublished(int limit) {
         Transaction transaction = null;
+        List<Artwork> artworks = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(book);
+            artworks = session
+                    .createQuery("from Artwork WHERE publishedAt IS NOT NULL ORDER BY publishedAt DESC", Artwork.class)
+                    .setMaxResults(limit).list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null)
                 transaction.rollback();
         }
-        return book;
+        return artworks;
     }
 }

@@ -10,4 +10,6 @@ public interface AudioService {
     Audio savePodcast(Audio audio, Long userId);
 
     List<Audio> getAllAudios();
+
+    Audio update(Audio audio);
 }

@@ -2,10 +2,15 @@ package application.sora.controllers.tabs;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.helpers.nodes.interfaces.ITabPage;
+import application.hibernate.entities.Artwork;
+import application.hibernate.services.ArtworkService;
+import application.hibernate.services.ArtworkServiceImpl;
 import application.sora.constants.FXMLConstants;
+import application.sora.controllers.nodes.FeaturedItemController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,7 +44,7 @@ public class HomeTabController implements Initializable, ITabPage {
     }
 
     private void populateProgressList() throws IOException {
-        Node[] nodes = new Node[10];
+        Node[] nodes = new Node[3];
         for (int i = 0; i < nodes.length; i++) {
             nodes[i] = FXMLLoader.load(getClass().getResource(FXMLConstants.PROGRESS_ART_ITEM));
         }
@@ -47,9 +52,16 @@ public class HomeTabController implements Initializable, ITabPage {
     }
 
     private void populateFeaturedList() throws IOException {
-        Node[] nodes = new Node[10];
+        ArtworkService artworkService = new ArtworkServiceImpl();
+
+        List<Artwork> artworks = artworkService.getRecentlyPublishedArtworks(5);
+        System.out.printf("Featured list includes %s items %n", artworks.size());
+
+        Node[] nodes = new Node[artworks.size()];
         for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = FXMLLoader.load(getClass().getResource(FXMLConstants.FEATURED_ART_ITEM));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(FXMLConstants.FEATURED_ART_ITEM));
+            loader.setController(new FeaturedItemController(artworks.get(i)));
+            nodes[i] = loader.load();
         }
         featuredHBox.getChildren().addAll(nodes);
     }

@@ -31,6 +31,9 @@ public abstract class Artwork {
     private Long id;
 
     @Column
+    private String title;
+
+    @Column
     private double cost;
 
     @Column
@@ -57,13 +60,15 @@ public abstract class Artwork {
 
     // --------- Constructors --------- //
 
-    public Artwork(double cost, String fileUrl, String coverImg) {
+    public Artwork(String title, double cost, String fileUrl, String coverImg) {
+        this.title = title;
         this.cost = cost;
         this.fileUrl = fileUrl;
         this.coverImg = coverImg;
     }
 
-    public Artwork(double cost, String fileUrl, String coverImg, User user) {
+    public Artwork(String title, double cost, String fileUrl, String coverImg, User user) {
+        this.title = title;
         this.cost = cost;
         this.fileUrl = fileUrl;
         this.coverImg = coverImg;

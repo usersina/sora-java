@@ -23,4 +23,9 @@ public class AudioServiceImpl implements AudioService {
     public List<Audio> getAllAudios() {
         return audioRepository.findAll();
     }
+
+    @Override
+    public Audio update(Audio audio) {
+        return audioRepository.update(audio);
+    }
 }
