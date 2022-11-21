@@ -78,7 +78,7 @@ public class IndexController implements Initializable {
 		System.out.printf("Intializing %s...%n", this.getClass().getSimpleName());
 
 		// Sanity Check, if no userId is present crash the app
-		if (Optional.of(Globals.getLoggedUserId()).isEmpty()) {
+		if (Optional.ofNullable(Globals.getLoggedUserId()).isEmpty()) {
 			throw new RuntimeException("Cannot Load the Index window without a valid userId");
 		}
 
