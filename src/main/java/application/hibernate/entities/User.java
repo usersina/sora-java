@@ -106,4 +106,17 @@ public class User {
         this.credit = credit;
         this.genres = genres;
     }
+
+    public User(String firstName, String lastName, String email, String username, String password, double credit,
+            Designation designation,
+            List<Genre> genres) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.credit = credit;
+        this.designation = designation;
+        this.genres = genres;
+    }
 }

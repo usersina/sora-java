@@ -71,7 +71,8 @@ public class DatabaseSeeder {
 		System.out.println("------------- Populating base data -------------");
 
 		// Create designations
-		designationService.saveDesignation(new Designation("Fan", "You never published any content", 0));
+		Designation fanDesignation = designationService
+				.saveDesignation(new Designation("Fan", "You never published any content", 0));
 		designationService.saveDesignation(new Designation("Novice", "You published very little content", 2));
 		designationService.saveDesignation(new Designation("Amateur", "You published some content", 5));
 		Designation novelist = designationService.saveDesignation(
@@ -91,6 +92,7 @@ public class DatabaseSeeder {
 				.saveUser(new User("John", "Writer", "john.writer@gmail.com", "jwriter", "password", 340, novelist));
 		User barrelUser = userService
 				.saveUser(new User("Barrel", "Reader", "barrel.reader@gmail.com", "breader", "password", 120,
+						fanDesignation,
 						Arrays.asList(scienceGenre, romanceGenre, scienceGenre)));
 
 		// Create reviewer
@@ -104,6 +106,12 @@ public class DatabaseSeeder {
 						"Time Travel for Dummies",
 						"The all-in one Time Travel book that even toddlers should be able to understand",
 						250, Arrays.asList(scienceGenre)),
+				johnUser.getId());
+		bookService.saveBook(
+				new Book(260, "https://some-site-or-service/lord-of-donus.pdf", johnUser,
+						"Lord of the Donuts",
+						"In the magical world of Tunod, a strange curse is turning criminals into donuts",
+						500, Arrays.asList(fantasyGenre)),
 				johnUser.getId());
 
 		// Add audio for the first book
