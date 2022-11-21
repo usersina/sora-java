@@ -12,6 +12,7 @@ import application.hibernate.entities.Genre;
 import application.hibernate.entities.Reviewer;
 import application.hibernate.entities.User;
 import application.hibernate.entities.composite.ArtworkRating;
+import application.hibernate.entities.composite.UserCollection;
 import application.hibernate.services.AudioService;
 import application.hibernate.services.AudioServiceImpl;
 import application.hibernate.services.BookService;
@@ -26,6 +27,8 @@ import application.hibernate.services.UserService;
 import application.hibernate.services.UserServiceImpl;
 import application.hibernate.services.composite.ArtworkRatingService;
 import application.hibernate.services.composite.ArtworkRatingServiceImpl;
+import application.hibernate.services.composite.UserCollectionService;
+import application.hibernate.services.composite.UserCollectionServiceImpl;
 
 /**
  * This is a helper class used to feed initial data into the database.
@@ -43,6 +46,7 @@ public class DatabaseSeeder {
 	AudioService audioService;
 
 	ArtworkRatingService artworkRatingService;
+	UserCollectionService userCollectionService;
 
 	public DatabaseSeeder() {
 		this.session = HibernateUtil.getSessionFactory().openSession();
@@ -54,6 +58,7 @@ public class DatabaseSeeder {
 		bookService = new BookServiceImpl();
 		audioService = new AudioServiceImpl();
 
+		userCollectionService = new UserCollectionServiceImpl();
 		artworkRatingService = new ArtworkRatingServiceImpl();
 	}
 
@@ -116,11 +121,12 @@ public class DatabaseSeeder {
 		// Create interests and reviews for "Kyouma Viewer"
 
 		// "Barrel Reader": Add book to user-collections
+		userCollectionService.saveUserCollection(new UserCollection(new Date(), barrelUser, timeTravelBook));
+		System.out.println(userCollectionService.getAllUserCollections());
 
 		// "Barrel Reader": Create review for "Time Travel for Dummies"
 		artworkRatingService.saveArtworkRating(
 				new ArtworkRating(5, "This book has some interesting things, but also a tag of sci-fi should be added.",
 						barrelUser, timeTravelBook));
-		System.out.println(artworkRatingService.getAllArtworkRatings());
 	}
 }
