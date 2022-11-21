@@ -12,6 +12,7 @@ import application.hibernate.entities.Genre;
 import application.hibernate.entities.Reviewer;
 import application.hibernate.entities.User;
 import application.hibernate.entities.composite.ArtworkRating;
+import application.hibernate.entities.composite.ArtworkReview;
 import application.hibernate.entities.composite.UserCollection;
 import application.hibernate.services.AudioService;
 import application.hibernate.services.AudioServiceImpl;
@@ -27,6 +28,8 @@ import application.hibernate.services.UserService;
 import application.hibernate.services.UserServiceImpl;
 import application.hibernate.services.composite.ArtworkRatingService;
 import application.hibernate.services.composite.ArtworkRatingServiceImpl;
+import application.hibernate.services.composite.ArtworkReviewService;
+import application.hibernate.services.composite.ArtworkReviewServiceImpl;
 import application.hibernate.services.composite.UserCollectionService;
 import application.hibernate.services.composite.UserCollectionServiceImpl;
 
@@ -45,6 +48,7 @@ public class DatabaseSeeder {
 	BookService bookService;
 	AudioService audioService;
 
+	ArtworkReviewService artworkReviewService;
 	ArtworkRatingService artworkRatingService;
 	UserCollectionService userCollectionService;
 
@@ -58,8 +62,9 @@ public class DatabaseSeeder {
 		bookService = new BookServiceImpl();
 		audioService = new AudioServiceImpl();
 
-		userCollectionService = new UserCollectionServiceImpl();
+		artworkReviewService = new ArtworkReviewServiceImpl();
 		artworkRatingService = new ArtworkRatingServiceImpl();
+		userCollectionService = new UserCollectionServiceImpl();
 	}
 
 	public void populateDatabase() {
@@ -119,6 +124,12 @@ public class DatabaseSeeder {
 		// . Create review for "Time Travel for Dummies"
 
 		// Create interests and reviews for "Kyouma Viewer"
+		// "Kyouma Viewer" create interests
+
+		// "Kyouma Viewer" create review for "Time Travel for Dummies"
+		artworkReviewService.saveArtworkReview(
+				new ArtworkReview("This book is GOLDEN. Published!",
+						"Hear my new Podcast about it if you're interested!", true, kyoumaReviewer, timeTravelBook));
 
 		// "Barrel Reader": Add book to user-collections
 		userCollectionService.saveUserCollection(new UserCollection(new Date(), barrelUser, timeTravelBook));

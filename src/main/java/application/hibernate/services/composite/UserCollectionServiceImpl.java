@@ -17,5 +17,4 @@ public class UserCollectionServiceImpl implements UserCollectionService {
     public List<UserCollection> getAllUserCollections() {
         return userCollectionRepository.findAll();
     }
-
 }
