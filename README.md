@@ -1,4 +1,4 @@
-# SORA - An Online Smart Reader (java)
+# SORA - An Online Smart Reader (Java)
 
 This is a university project that might grow to be something more than that.
 
