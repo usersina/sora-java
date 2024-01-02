@@ -11,6 +11,10 @@ import application.hibernate.services.ArtworkService;
 import application.hibernate.services.ArtworkServiceImpl;
 import application.sora.constants.FXMLConstants;
 import application.sora.controllers.nodes.FeaturedItemController;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,12 +39,31 @@ public class HomeTabController implements Initializable, ITabPage {
     @Override
     public void onTabOpen() {
         System.out.printf("Opened the tab: %s%n", this.getClass().getSimpleName());
-        try {
-            this.populateProgressList();
-            this.populateFeaturedList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Platform.runLater(() -> {
+                    try {
+                        populateProgressList();
+                        populateFeaturedList();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                return null;
+            }
+        };
+
+        task.setOnFailed(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                Throwable e = task.getException();
+                e.printStackTrace();
+            }
+        });
+
+        new Thread(task).start();
     }
 
     private void populateProgressList() throws IOException {
