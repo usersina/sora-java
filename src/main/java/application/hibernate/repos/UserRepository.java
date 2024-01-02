@@ -22,6 +22,20 @@ public class UserRepository {
         return user;
     }
 
+    public User findById(Long id) {
+        Transaction transaction = null;
+        User user = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            user = session.get(User.class, id);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null)
+                transaction.rollback();
+        }
+        return user;
+    }
+
     public List<User> findAll() {
         Transaction transaction = null;
         List<User> users = null;
