@@ -38,6 +38,10 @@ public class FXApp extends Application {
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+
+			// DEVONLY: Show the chat window
+			// Globals.setLoggedUserId(1L);
+			// new ChatWindow().show();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -58,7 +62,7 @@ public class FXApp extends Application {
 	/**
 	 * Resize the main window size to match the ones passed in the params.
 	 * This needs to be executed when changing from one scene to another.
-	 * 
+	 *
 	 * @param width  the new width of the scene
 	 * @param height the new height of the scene
 	 */

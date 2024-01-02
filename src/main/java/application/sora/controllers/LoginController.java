@@ -40,7 +40,7 @@ public class LoginController implements Initializable {
 	 * Get the user input and verify whether it corresponds to an actual user.
 	 * If so, then set the userId to the Global state and redirect to the Index
 	 * scene. Otherwise show an error alert.
-	 * 
+	 *
 	 * @param event
 	 * @throws IOException
 	 */
@@ -53,6 +53,7 @@ public class LoginController implements Initializable {
 		if (Optional.ofNullable(user).isEmpty() || (!user.getPassword().equals(password))) {
 			Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot login with the specified credentials!");
 			alert.setHeaderText(null);
+			alert.setResizable(true);
 			alert.setTitle("Login error");
 			alert.show();
 			return;

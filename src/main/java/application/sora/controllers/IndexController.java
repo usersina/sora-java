@@ -5,17 +5,20 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.sora.FXApp;
+import application.sora.chat.ChatWindow;
 import application.sora.constants.Globals;
 import application.sora.controllers.tabs.CollectionTabController;
 import application.sora.controllers.tabs.HomeTabController;
 import application.sora.controllers.tabs.ProfileTabController;
 import application.sora.controllers.tabs.SavedTabController;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 enum AppTabPage {
 	HOME,
@@ -28,7 +31,7 @@ enum AppTabPage {
  * The index controller of the wrapper that popus after the initial login and
  * contains all other tabs.
  * <p>
- * 
+ *
  * Note that:
  * <ul>
  * <li>This file also includes references to all other controllers to handle
@@ -75,7 +78,7 @@ public class IndexController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.printf("Intializing %s...%n", this.getClass().getSimpleName());
+		System.out.printf("Initializing %s...%n", this.getClass().getSimpleName());
 
 		// Sanity Check, if no userId is present crash the app
 		if (Optional.ofNullable(Globals.getLoggedUserId()).isEmpty()) {
@@ -87,6 +90,11 @@ public class IndexController implements Initializable {
 		FXApp.centerStage();
 
 		setTabsListener();
+
+		// Show the chat window after 2 seconds
+		PauseTransition delay = new PauseTransition(Duration.seconds(2));
+		delay.setOnFinished(event -> new ChatWindow().show());
+		delay.play();
 	}
 
 	/**
