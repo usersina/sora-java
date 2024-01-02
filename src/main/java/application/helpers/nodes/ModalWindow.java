@@ -21,7 +21,7 @@ public class ModalWindow {
     public ModalWindow(String fxmlFile, String title) {
         this.modalStage = new Stage();
         this.modalStage.initModality(Modality.APPLICATION_MODAL);
-        this.modalStage.setResizable(false);
+        this.modalStage.setResizable(true);
         this.modalStage.setTitle(title);
         try {
             this.loader = new FXMLLoader(getClass().getResource(fxmlFile));

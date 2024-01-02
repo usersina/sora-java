@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="184.0" prefWidth="126.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="184.0" prefWidth="126.0" xmlns="http://javafx.com/javafx/19"
+   xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane layoutY="54.0" prefHeight="130.0" prefWidth="350.0" styleClass="artwork-card-body">
          <children>
@@ -42,9 +43,10 @@
             </VBox>
          </children>
       </Pane>
-      <ImageView fitHeight="155.0" fitWidth="106.0" layoutX="48.0" pickOnBounds="true" styleClass="artwork-card-image">
+      <ImageView fitHeight="155.0" fitWidth="106.0" layoutX="48.0" pickOnBounds="true"
+         styleClass="artwork-card-image">
          <image>
-            <Image url="@../../images/books_background.jpg" />
+            <Image url="@../../images/books_background.png" />
          </image>
       </ImageView>
    </children>
