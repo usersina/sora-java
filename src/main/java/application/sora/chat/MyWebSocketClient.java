@@ -1,0 +1,37 @@
+package application.sora.chat;
+
+import java.net.URI;
+
+import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.handshake.ServerHandshake;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class MyWebSocketClient extends WebSocketClient {
+    private static final Logger logger = LoggerFactory.getLogger(MyWebSocketClient.class);
+
+    public MyWebSocketClient(URI serverUri) {
+        super(serverUri);
+    }
+
+    @Override
+    public void onOpen(ServerHandshake handshakedata) {
+        logger.info("Connected");
+    }
+
+    @Override
+    public void onMessage(String message) {
+        // Here you can handle the messages received from the server
+        logger.info("Received: " + message);
+    }
+
+    @Override
+    public void onClose(int code, String reason, boolean remote) {
+        logger.info("Connection closed");
+    }
+
+    @Override
+    public void onError(Exception ex) {
+        ex.printStackTrace();
+    }
+}

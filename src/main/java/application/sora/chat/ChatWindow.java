@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,8 +27,13 @@ import application.sora.constants.Globals;
 import application.sora.util.JFrameDraggable;
 
 public class ChatWindow {
+    private final String url = "ws://localhost:8888";
+    private MyWebSocketClient webSocketClient;
+
     private UserService userService;
     private User currentUser;
+
+    private JTextArea chatArea; // Assuming you have a JTextArea for chat messages
 
     public ChatWindow() {
         this.userService = new UserServiceImpl();
@@ -34,6 +41,18 @@ public class ChatWindow {
 
         if (currentUser == null) {
             throw new RuntimeException("User not found!");
+        }
+
+        try {
+            this.webSocketClient = new MyWebSocketClient(new URI(url)) {
+                @Override
+                public void onMessage(String message) {
+                    chatArea.append(message + "\n");
+                }
+            };
+            this.webSocketClient.connect();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 
@@ -49,7 +68,7 @@ public class ChatWindow {
         chatFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Create a JTextArea for the chat messages
-        JTextArea chatArea = new JTextArea();
+        chatArea = new JTextArea();
         chatArea.setEditable(false); // So users can't edit previous messages
         chatArea.setLineWrap(true); // Enable line wrapping
         chatArea.setWrapStyleWord(true); // Enable word wrapping
@@ -68,14 +87,17 @@ public class ChatWindow {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     e.consume(); // Consume the event so the newline isn't added to the JTextArea
 
-                    // Add the sender's name, the current date, and the message to the chat
+                    // Send the message over the WebSocket connection
                     String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                    chatArea.append(String.format(
-                            "%s: %s (%s)\n",
+                    String message = String.format(
+                            "%s: %s (%s)",
                             currentUser.getFirstName() + " " + currentUser.getLastName(),
                             messageField.getText().trim(),
-                            date) //
-                    );
+                            date);
+                    chatArea.append(message + "\n");
+                    webSocketClient.send(message);
+
+                    // Clear the messageField
                     messageField.setText("");
                 }
             }
