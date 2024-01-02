@@ -30,7 +30,7 @@
                               <Image url="@../images/books_background.png" />
                            </image>
                         </ImageView>
-                        <Label text="John Doe">
+                        <Label fx:id="fullnameLb" text="John Doe">
                            <font>
                               <Font name="System Bold Italic" size="22.0" />
                            </font>

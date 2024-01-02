@@ -1,7 +1,6 @@
 package application.sora.controllers;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import application.sora.FXApp;
@@ -14,6 +13,7 @@ import application.sora.controllers.tabs.SavedTabController;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
@@ -43,6 +43,9 @@ enum AppTabPage {
 public class IndexController implements Initializable {
 	@FXML
 	private AnchorPane mainAp;
+
+	@FXML
+	private Label fullnameLb;
 
 	@FXML
 	private TabPane mainTp;
@@ -81,13 +84,15 @@ public class IndexController implements Initializable {
 		System.out.printf("Initializing %s...%n", this.getClass().getSimpleName());
 
 		// Sanity Check, if no userId is present crash the app
-		if (Optional.ofNullable(Globals.getLoggedUserId()).isEmpty()) {
+		if (Globals.getLoggedUser() == null) {
 			throw new RuntimeException("Cannot Load the Index window without a valid userId");
 		}
 
 		// Resize stage to match current size and center stage to center
 		FXApp.resizeWindow((int) mainAp.getPrefWidth(), (int) mainAp.getPrefHeight());
 		FXApp.centerStage();
+
+		fullnameLb.setText(Globals.getLoggedUser().getFirstName() + " " + Globals.getLoggedUser().getLastName());
 
 		setTabsListener();
 
